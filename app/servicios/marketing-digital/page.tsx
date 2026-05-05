@@ -48,6 +48,7 @@ const problems = [
 
 const blocks = [
   {
+    id: 'redes',
     title: 'Gestión de redes sociales y community manager',
     desc: 'Gestionamos tus redes de principio a fin: estrategia, creación de contenido, publicación y gestión de la comunidad. Instagram, Facebook, LinkedIn y TikTok — cada red con su voz y su formato.',
     image: 'https://images.unsplash.com/photo-1611162616305-c69b3037c7bb?w=600&q=80&fit=crop',
@@ -60,6 +61,7 @@ const blocks = [
     ],
   },
   {
+    id: 'email',
     title: 'Campañas de publicidad en Meta Ads y Google Ads',
     desc: 'Creamos y gestionamos campañas en Facebook Ads, Instagram Ads y Google Ads para llegar a tu cliente ideal, conseguir leads y vender más. Con presupuesto controlado y optimización continua.',
     image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80&fit=crop',
@@ -72,6 +74,7 @@ const blocks = [
     ],
   },
   {
+    id: 'geo',
     title: 'Estrategia de contenidos para redes sociales',
     desc: 'Una marca que publica sin estrategia es invisible. Desarrollamos el plan de contenidos, los mensajes clave y el calendario editorial para que cada publicación tenga un propósito claro.',
     image: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=600&q=80&fit=crop',
@@ -84,6 +87,7 @@ const blocks = [
     ],
   },
   {
+    id: 'auditoria',
     title: 'Auditoría y optimización de perfiles sociales',
     desc: 'Si no sabes en qué punto está tu presencia en redes ahora mismo, empezamos por ahí. Auditamos tus perfiles, tu contenido y tu audiencia para saber exactamente qué hay que cambiar primero.',
     image: 'https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?w=600&q=80&fit=crop',
@@ -186,6 +190,7 @@ export default function MarketingDigitalPage() {
           {blocks.map((block, idx) => (
             <div
               key={block.title}
+              id={block.id}
               className={`md-block${!block.imageRight ? ' md-block-rev' : ''}`}
             >
               <div style={{ position: 'relative', height: 340, borderRadius: 16, overflow: 'hidden' }}>
