@@ -56,16 +56,45 @@ function TrustPt({ children }: { children: React.ReactNode }) {
 
 /* ── Page ─────────────────────────────────────────────────── */
 export default function ContactoPage() {
-  const [nombre,   setNombre]   = useState('')
-  const [email,    setEmail]    = useState('')
-  const [tipo,     setTipo]     = useState('')
-  const [mensaje,  setMensaje]  = useState('')
-  const [focused,  setFocused]  = useState<string | null>(null)
-  const [sent,     setSent]     = useState(false)
+  const [nombre,      setNombre]      = useState('')
+  const [email,       setEmail]       = useState('')
+  const [tipo,        setTipo]        = useState('')
+  const [mensaje,     setMensaje]     = useState('')
+  const [privacidad,  setPrivacidad]  = useState(false)
+  const [comercial,   setComercial]   = useState(false)
+  const [focused,     setFocused]     = useState<string | null>(null)
+  const [sent,        setSent]        = useState(false)
+  const [loading,     setLoading]     = useState(false)
+  const [submitError, setSubmitError] = useState(false)
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
-    setSent(true)
+    if (!privacidad) return
+    setLoading(true)
+    setSubmitError(false)
+    try {
+      await fetch(process.env.NEXT_PUBLIC_MAKE_WEBHOOK_URL || '', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          nombre,
+          email,
+          empresa: '',
+          whatsapp: '',
+          sector: '',
+          tipoProyecto: tipo,
+          mensaje,
+          aceptaComercial: comercial,
+          fecha: new Date().toISOString(),
+          origen: 'Aurentis Studio — Formulario de contacto',
+        }),
+      })
+      setSent(true)
+    } catch {
+      setSubmitError(true)
+    } finally {
+      setLoading(false)
+    }
   }
 
   const gradText: React.CSSProperties = {
@@ -97,7 +126,8 @@ export default function ContactoPage() {
           cursor: pointer;
         }
         .ct-btn { transition: background 0.2s, box-shadow 0.2s; }
-        .ct-btn:hover { background: #1d4fd8 !important; box-shadow: 0 0 36px rgba(37,99,255,0.45) !important; }
+        .ct-btn:hover:not(:disabled) { background: #1d4fd8 !important; box-shadow: 0 0 36px rgba(37,99,255,0.45) !important; }
+        @keyframes ct-spin { to { transform: rotate(360deg); } }
         @media (max-width: 768px) {
           .ct-layout { grid-template-columns: 1fr; padding: 120px 5% 80px; gap: 2.5rem; }
         }
@@ -184,11 +214,11 @@ export default function ContactoPage() {
 
             {sent ? (
               <div style={{ textAlign: 'center', padding: '40px 0' }}>
-                <div style={{ width: 56, height: 56, borderRadius: '50%', background: 'rgba(37,99,255,0.1)', border: '1px solid rgba(37,99,255,0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 20px' }}>
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4 10-10" stroke="#60A5FA" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                <div style={{ width: 56, height: 56, borderRadius: '50%', background: 'rgba(22,163,74,0.1)', border: '1px solid rgba(22,163,74,0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 20px' }}>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4 10-10" stroke="#4ADE80" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
                 </div>
                 <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 20, fontWeight: 700, color: '#F1F5F9', margin: '0 0 10px' }}>¡Mensaje enviado!</h3>
-                <p style={{ color: '#94A3B8', fontSize: 14, fontFamily: 'var(--font-body)', margin: 0 }}>Te respondo en menos de 48 horas.</p>
+                <p style={{ color: '#4ADE80', fontSize: 14, fontFamily: 'var(--font-body)', margin: 0 }}>Te respondo en menos de 48h.</p>
               </div>
             ) : (
               <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
@@ -215,8 +245,77 @@ export default function ContactoPage() {
                   <FieldLabel>¿En qué punto se encuentra tu negocio y qué te gustaría lograr? <span style={{ color: '#3B82F6' }}>*</span></FieldLabel>
                   <textarea required rows={5} placeholder="Cuéntame dónde estás ahora y qué resultado concreto buscas. Cuanto más específico seas, mejor podré ayudarte." value={mensaje} onChange={e => setMensaje(e.target.value)} onFocus={() => setFocused('mensaje')} onBlur={() => setFocused(null)} className="ct-input" style={{ ...inputStyle(focused === 'mensaje'), minHeight: 130, resize: 'vertical', lineHeight: 1.6 }} />
                 </div>
-                <button type="submit" className="ct-btn" style={{ width: '100%', background: '#2563FF', color: '#fff', fontFamily: 'var(--font-display)', fontSize: 15, fontWeight: 600, padding: 14, borderRadius: 9, border: 'none', cursor: 'pointer', boxShadow: '0 0 28px rgba(37,99,255,0.3)' }}>
-                  Solicitar mi plan de crecimiento gratuito →
+
+                {/* RGPD checkboxes */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+                  <label style={{ display: 'flex', gap: 10, alignItems: 'flex-start', cursor: 'pointer' }}>
+                    <input
+                      type="checkbox"
+                      required
+                      checked={privacidad}
+                      onChange={e => setPrivacidad(e.target.checked)}
+                      style={{ width: 16, height: 16, accentColor: '#2563FF', flexShrink: 0, marginTop: 2, cursor: 'pointer' }}
+                    />
+                    <span style={{ color: '#94A3B8', fontSize: 13, fontFamily: 'var(--font-body)', lineHeight: 1.5 }}>
+                      He leído y acepto la <span style={{ color: '#60A5FA' }}>Política de Privacidad</span> y el tratamiento de mis datos para gestionar mi consulta. <span style={{ color: '#3B82F6' }}>*</span>
+                    </span>
+                  </label>
+                  <label style={{ display: 'flex', gap: 10, alignItems: 'flex-start', cursor: 'pointer' }}>
+                    <input
+                      type="checkbox"
+                      checked={comercial}
+                      onChange={e => setComercial(e.target.checked)}
+                      style={{ width: 16, height: 16, accentColor: '#2563FF', flexShrink: 0, marginTop: 2, cursor: 'pointer' }}
+                    />
+                    <span style={{ color: '#94A3B8', fontSize: 13, fontFamily: 'var(--font-body)', lineHeight: 1.5 }}>
+                      Acepto recibir comunicaciones comerciales y novedades por email.
+                    </span>
+                  </label>
+                  <p style={{ fontSize: 11, color: '#4B5A72', fontStyle: 'italic', fontFamily: 'var(--font-body)', margin: 0, lineHeight: 1.5 }}>
+                    Responsable: Aurentis Studio. Tus datos se usarán para gestionar tu consulta y, si lo has aceptado, enviarte comunicaciones comerciales. No cedemos datos a terceros. Puedes ejercer tus derechos en aurentistudio@outlook.com.
+                  </p>
+                </div>
+
+                {/* Error feedback */}
+                {submitError && (
+                  <div style={{ background: 'rgba(239,68,68,0.1)', border: '1px solid rgba(239,68,68,0.25)', borderRadius: 9, padding: '12px 14px' }}>
+                    <p style={{ color: '#F87171', fontSize: 13.5, fontFamily: 'var(--font-body)', margin: 0 }}>
+                      Algo salió mal. Escríbeme directamente a{' '}
+                      <a href="mailto:aurentistudio@outlook.com" style={{ color: '#F87171', textDecoration: 'underline' }}>aurentistudio@outlook.com</a>
+                    </p>
+                  </div>
+                )}
+
+                <button
+                  type="submit"
+                  disabled={!privacidad || loading}
+                  className="ct-btn"
+                  style={{
+                    width: '100%',
+                    background: '#2563FF',
+                    color: '#fff',
+                    fontFamily: 'var(--font-display)',
+                    fontSize: 15,
+                    fontWeight: 600,
+                    padding: 14,
+                    borderRadius: 9,
+                    border: 'none',
+                    cursor: (!privacidad || loading) ? 'not-allowed' : 'pointer',
+                    opacity: (!privacidad || loading) ? 0.45 : 1,
+                    boxShadow: '0 0 28px rgba(37,99,255,0.3)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: 8,
+                    transition: 'background 0.2s, box-shadow 0.2s, opacity 0.2s',
+                  }}
+                >
+                  {loading ? (
+                    <>
+                      <span style={{ width: 16, height: 16, border: '2px solid rgba(255,255,255,0.3)', borderTopColor: '#fff', borderRadius: '50%', display: 'inline-block', animation: 'ct-spin 0.7s linear infinite' }} />
+                      Enviando...
+                    </>
+                  ) : 'Solicitar mi plan de crecimiento gratuito →'}
                 </button>
                 <p style={{ textAlign: 'center', fontSize: 12.5, color: '#4B5A72', fontStyle: 'italic', fontFamily: 'var(--font-body)', margin: 0 }}>
                   Analizo tu presencia digital actual (web y redes) antes de nuestra primera charla.

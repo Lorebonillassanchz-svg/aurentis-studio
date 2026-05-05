@@ -106,12 +106,17 @@ function FieldLabel({ children }: { children: React.ReactNode }) {
 
 /* ── Main component ───────────────────────────────────────── */
 export default function AuditoriaForm() {
-  const [nombre,   setNombre]   = useState('')
-  const [empresa,  setEmpresa]  = useState('')
-  const [email,    setEmail]    = useState('')
-  const [whatsapp, setWhatsapp] = useState('')
-  const [sector,   setSector]   = useState('')
-  const [problema, setProblema] = useState('')
+  const [nombre,      setNombre]      = useState('')
+  const [empresa,     setEmpresa]     = useState('')
+  const [email,       setEmail]       = useState('')
+  const [whatsapp,    setWhatsapp]    = useState('')
+  const [sector,      setSector]      = useState('')
+  const [problema,    setProblema]    = useState('')
+  const [privacidad,  setPrivacidad]  = useState(false)
+  const [comercial,   setComercial]   = useState(false)
+  const [loading,     setLoading]     = useState(false)
+  const [sent,        setSent]        = useState(false)
+  const [submitError, setSubmitError] = useState(false)
 
   const [sectorOpen,      setSectorOpen]      = useState(false)
   const [sectorHighlight, setSectorHighlight] = useState(-1)
@@ -161,8 +166,34 @@ export default function AuditoriaForm() {
     sectorInput.current?.blur()
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
+    if (!privacidad) return
+    setLoading(true)
+    setSubmitError(false)
+    try {
+      await fetch(process.env.NEXT_PUBLIC_MAKE_WEBHOOK_URL || '', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          nombre,
+          email,
+          empresa,
+          whatsapp,
+          sector,
+          tipoProyecto: '',
+          mensaje: problema,
+          aceptaComercial: comercial,
+          fecha: new Date().toISOString(),
+          origen: 'Aurentis Studio — Formulario de auditoría',
+        }),
+      })
+      setSent(true)
+    } catch {
+      setSubmitError(true)
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -180,6 +211,7 @@ export default function AuditoriaForm() {
         .auditoria-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
         .auditoria-input::placeholder { color: #4B5A72; }
         .sector-option:hover { background: rgba(37,99,255,0.12) !important; }
+        @keyframes aud-spin { to { transform: rotate(360deg); } }
         @media (max-width: 768px) {
           .auditoria-grid { grid-template-columns: 1fr; gap: 2.5rem; }
           .auditoria-sticky { position: static; }
@@ -267,16 +299,12 @@ export default function AuditoriaForm() {
           </div>
 
           {/* ── RIGHT: form ── */}
-          <form
-            onSubmit={handleSubmit}
+          <div
             style={{
               background: '#0F172A',
               border: '1px solid rgba(255,255,255,0.07)',
               borderRadius: 20,
               padding: 36,
-              display: 'flex',
-              flexDirection: 'column',
-              gap: 18,
               position: 'relative',
               overflow: 'hidden',
             }}
@@ -290,6 +318,24 @@ export default function AuditoriaForm() {
                 background: 'linear-gradient(90deg, #2563FF, #6366F1, transparent)',
               }}
             />
+
+          {sent ? (
+            <div style={{ textAlign: 'center', padding: '40px 0' }}>
+              <div style={{ width: 56, height: 56, borderRadius: '50%', background: 'rgba(22,163,74,0.1)', border: '1px solid rgba(22,163,74,0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 20px' }}>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4 10-10" stroke="#4ADE80" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+              </div>
+              <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 20, fontWeight: 700, color: '#F1F5F9', margin: '0 0 10px' }}>¡Solicitud recibida!</h3>
+              <p style={{ color: '#4ADE80', fontSize: 14, fontFamily: 'var(--font-body)', margin: 0 }}>Te respondo en menos de 48h con tu análisis.</p>
+            </div>
+          ) : (
+          <form
+            onSubmit={handleSubmit}
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: 18,
+            }}
+          >
 
             {/* Row 1: Nombre + Empresa */}
             <div className="auditoria-row">
@@ -441,9 +487,50 @@ export default function AuditoriaForm() {
               />
             </div>
 
+            {/* RGPD checkboxes */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+              <label style={{ display: 'flex', gap: 10, alignItems: 'flex-start', cursor: 'pointer' }}>
+                <input
+                  type="checkbox"
+                  required
+                  checked={privacidad}
+                  onChange={e => setPrivacidad(e.target.checked)}
+                  style={{ width: 16, height: 16, accentColor: '#2563FF', flexShrink: 0, marginTop: 2, cursor: 'pointer' }}
+                />
+                <span style={{ color: '#94A3B8', fontSize: 13, fontFamily: 'var(--font-body)', lineHeight: 1.5 }}>
+                  He leído y acepto la <span style={{ color: '#60A5FA' }}>Política de Privacidad</span> y el tratamiento de mis datos para gestionar mi consulta. <span style={{ color: '#3B82F6' }}>*</span>
+                </span>
+              </label>
+              <label style={{ display: 'flex', gap: 10, alignItems: 'flex-start', cursor: 'pointer' }}>
+                <input
+                  type="checkbox"
+                  checked={comercial}
+                  onChange={e => setComercial(e.target.checked)}
+                  style={{ width: 16, height: 16, accentColor: '#2563FF', flexShrink: 0, marginTop: 2, cursor: 'pointer' }}
+                />
+                <span style={{ color: '#94A3B8', fontSize: 13, fontFamily: 'var(--font-body)', lineHeight: 1.5 }}>
+                  Acepto recibir comunicaciones comerciales y novedades por email.
+                </span>
+              </label>
+              <p style={{ fontSize: 11, color: '#4B5A72', fontStyle: 'italic', fontFamily: 'var(--font-body)', margin: 0, lineHeight: 1.5 }}>
+                Responsable: Aurentis Studio. Tus datos se usarán para gestionar tu consulta y, si lo has aceptado, enviarte comunicaciones comerciales. No cedemos datos a terceros. Puedes ejercer tus derechos en aurentistudio@outlook.com.
+              </p>
+            </div>
+
+            {/* Error feedback */}
+            {submitError && (
+              <div style={{ background: 'rgba(239,68,68,0.1)', border: '1px solid rgba(239,68,68,0.25)', borderRadius: 9, padding: '12px 14px' }}>
+                <p style={{ color: '#F87171', fontSize: 13.5, fontFamily: 'var(--font-body)', margin: 0 }}>
+                  Algo salió mal. Escríbeme directamente a{' '}
+                  <a href="mailto:aurentistudio@outlook.com" style={{ color: '#F87171', textDecoration: 'underline' }}>aurentistudio@outlook.com</a>
+                </p>
+              </div>
+            )}
+
             {/* Submit */}
             <button
               type="submit"
+              disabled={!privacidad || loading}
               style={{
                 width: '100%',
                 background: '#2563FF',
@@ -454,22 +541,34 @@ export default function AuditoriaForm() {
                 padding: 14,
                 borderRadius: 9,
                 border: 'none',
-                cursor: 'pointer',
+                cursor: (!privacidad || loading) ? 'not-allowed' : 'pointer',
+                opacity: (!privacidad || loading) ? 0.45 : 1,
                 boxShadow: '0 0 28px rgba(37,99,255,0.3)',
-                transition: 'background 0.2s, box-shadow 0.2s',
+                transition: 'background 0.2s, box-shadow 0.2s, opacity 0.2s',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: 8,
               }}
               onMouseEnter={e => {
-                const el = e.currentTarget as HTMLButtonElement
-                el.style.background  = '#1d4fd8'
-                el.style.boxShadow   = '0 0 36px rgba(37,99,255,0.45)'
+                if (privacidad && !loading) {
+                  const el = e.currentTarget as HTMLButtonElement
+                  el.style.background = '#1d4fd8'
+                  el.style.boxShadow  = '0 0 36px rgba(37,99,255,0.45)'
+                }
               }}
               onMouseLeave={e => {
                 const el = e.currentTarget as HTMLButtonElement
-                el.style.background  = '#2563FF'
-                el.style.boxShadow   = '0 0 28px rgba(37,99,255,0.3)'
+                el.style.background = '#2563FF'
+                el.style.boxShadow  = '0 0 28px rgba(37,99,255,0.3)'
               }}
             >
-              Quiero mi análisis gratuito →
+              {loading ? (
+                <>
+                  <span style={{ width: 16, height: 16, border: '2px solid rgba(255,255,255,0.3)', borderTopColor: '#fff', borderRadius: '50%', display: 'inline-block', animation: 'aud-spin 0.7s linear infinite' }} />
+                  Enviando...
+                </>
+              ) : 'Quiero mi análisis gratuito →'}
             </button>
 
             <p
@@ -485,6 +584,8 @@ export default function AuditoriaForm() {
               Respondo en menos de 48h. Sin spam, sin llamadas no solicitadas.
             </p>
           </form>
+          )}
+          </div>
         </div>
       </section>
     </>
