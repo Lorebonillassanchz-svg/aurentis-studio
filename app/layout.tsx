@@ -4,6 +4,7 @@ import './globals.css'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import ScrollRevealInit from './components/ScrollRevealInit'
+import WhatsAppButton from './components/WhatsAppButton'
 
 const outfit = Outfit({
   subsets: ['latin'],
@@ -49,6 +50,7 @@ export default function RootLayout({
         <Navbar />
         {children}
         <Footer />
+        <WhatsAppButton />
       </body>
     </html>
   )
