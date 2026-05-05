@@ -48,27 +48,27 @@ const WHY_CARDS = [
     color: '#2563FF',
     colorRgb: '37,99,255',
     tagColor: '#93C5FD',
-    tag: 'Humanismo',
-    title: 'Trato directo, sin filtros',
-    desc: 'No hablas con una agencia llena de intermediarios. Hablas conmigo. Me involucro en tu negocio como si fuera el mío porque entiendo el esfuerzo que hay detrás de cada proyecto.',
+    tag: 'Coherencia',
+    title: 'Imagen digital coherente',
+    desc: 'Me aseguro de que lo que tu cliente ve en Instagram, lo que encuentra en Google y lo que siente al entrar en tu web sea una misma experiencia profesional.',
     icon: (c: string) => <PeopleIcon color={c} />,
   },
   {
     color: '#6366F1',
     colorRgb: '99,102,241',
     tagColor: '#C4B5FD',
-    tag: 'Profesionalismo',
-    title: 'Estrategia antes que código',
-    desc: 'Antes de tocar una sola línea de diseño, analizo a tu competencia y a tu cliente ideal. Si no sabemos a quién le vendemos, la web no servirá de nada.',
+    tag: 'Eficiencia',
+    title: 'Estrategia antes que ejecución',
+    desc: 'No publico por publicar ni diseño por diseñar. Analizo dónde están tus clientes potenciales y trazo el camino más corto para que lleguen a ti, ya sea mediante SEO local, anuncios o contenido estratégico.',
     icon: (c: string) => <TargetIcon color={c} />,
   },
   {
     color: '#16A34A',
     colorRgb: '22,163,74',
     tagColor: '#4ADE80',
-    tag: 'Honestidad',
-    title: 'Realismo sobre promesas vacías',
-    desc: 'Si creo que una idea no va a funcionar para tu negocio, te lo diré. Mi objetivo no es entregarte una web, es entregarte resultados.',
+    tag: 'Trato humano',
+    title: 'Sin tecnicismos, con resultados',
+    desc: 'Entiendo el esfuerzo que supone gestionar un negocio. Por eso, hablas directamente conmigo. Sin intermediarios, con total honestidad y con el objetivo de que cada euro que inviertas en marketing te devuelva beneficios.',
     icon: (c: string) => <ShieldCheckIcon color={c} />,
   },
 ]
@@ -178,11 +178,11 @@ export default function SobreMiPage() {
               Sobre mí
             </span>
             <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(26px,3vw,44px)', fontWeight: 800, color: '#F1F5F9', margin: 0, lineHeight: 1.12 }}>
-              <span style={{ display: 'block' }}>No diseño webs para que se vean bien.</span>
-              <span style={gradText}>Las diseño para que tu negocio crezca.</span>
+              <span style={{ display: 'block' }}>No solo creo webs.</span>
+              <span style={gradText}>Construyo el motor de crecimiento de tu negocio.</span>
             </h1>
             <p style={{ color: '#94A3B8', fontSize: 16, lineHeight: 1.78, fontFamily: 'var(--font-body)', fontWeight: 300, margin: 0, maxWidth: 480 }}>
-              Soy Lorena, y fundé Aurentis Studio porque me cansé de ver autónomos y PYMES con webs increíbles que no recibían ni un solo mensaje de contacto. Mi trabajo es unir la estética con la psicología de ventas para que tu presencia digital deje de ser un gasto y pase a ser tu mejor comercial.
+              Soy Lorena, y en Aurentis Studio ayudo a autónomos y PYMES a dejar de ser invisibles. Entiendo que una web bonita no sirve de nada si nadie la visita, y unas redes sociales con miles de seguidores no sirven si no generan ventas. Por eso, mi enfoque une el diseño estratégico, el posicionamiento SEO, la gestión de redes y la publicidad online en un solo sistema orientado a resultados.
             </p>
           </div>
 
@@ -210,9 +210,9 @@ export default function SobreMiPage() {
             Por qué trabajar conmigo
           </span>
           <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(24px,2.8vw,38px)', fontWeight: 800, color: '#F1F5F9', margin: 0, lineHeight: 1.2 }}>
-            Por qué elegir un enfoque{' '}
-            <span style={gradText}>estratégico</span>
-            {' '}frente a uno solo visual.
+            Por qué trabajar con una{' '}
+            <span style={gradText}>estratega integral</span>
+            {' '}y no con 5 especialistas distintos.
           </h2>
         </div>
         <div className="sm-why-grid">
@@ -242,27 +242,26 @@ export default function SobreMiPage() {
               fontFamily: 'var(--font-display)', fontSize: 12, fontWeight: 600,
               letterSpacing: '0.1em', textTransform: 'uppercase' as const, color: '#3B82F6',
             }}>
-              Mi filosofía
+              Cómo entiendo este trabajo
             </span>
             <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(22px,2.5vw,34px)', fontWeight: 800, color: '#F1F5F9', margin: 0, lineHeight: 1.2 }}>
-              La web es el centro,{' '}
+              El marketing digital no es magia,{' '}
               <br />
-              pero{' '}
-              <span style={gradText}>la estrategia es el motor.</span>
+              <span style={gradText}>es engranaje.</span>
             </h2>
             <p style={{ color: '#94A3B8', fontSize: 15.5, lineHeight: 1.78, fontFamily: 'var(--font-body)', fontWeight: 300, margin: 0 }}>
-              Un negocio real necesita soluciones reales. No creo en las plantillas genéricas. Creo en sistemas que comunican autoridad, resuelven dudas de forma instintiva y guían al usuario hacia el botón de contacto sin fricción.
+              Mi misión es que tú te encargues de tu negocio mientras yo me encargo de que el mundo lo conozca. Unifico la tecnología (Web) con la visibilidad (SEO y Ads) y la confianza (Redes Sociales). Si estas piezas no encajan, el marketing no funciona. En Aurentis, hacemos que encajen.
             </p>
             <p style={{ color: '#94A3B8', fontSize: 15.5, lineHeight: 1.78, fontFamily: 'var(--font-body)', fontWeight: 300, margin: 0 }}>
-              Cada decisión de diseño tiene un porqué. Cada sección de tu web tiene un objetivo. Nada está puesto porque queda bonito.
+              Cada acción tiene un propósito. Cada euro invertido, un retorno esperado. Trabajo con datos, con estrategia y con la misma implicación que pondría si el negocio fuera mío.
             </p>
 
             {/* 3 puntos con línea azul */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: 14, marginTop: 8 }}>
               {[
-                'Diseño orientado a conversión, no a premios',
-                'Estrategia antes de abrir el editor',
-                'Resultados medibles, no promesas vacías',
+                'Web, SEO, Redes y Ads trabajando como un sistema',
+                'Estrategia personalizada para cada negocio',
+                'Resultados medibles desde el primer mes',
               ].map(item => (
                 <div
                   key={item}
@@ -301,15 +300,14 @@ export default function SobreMiPage() {
             fontFamily: 'var(--font-display)', fontSize: 12, fontWeight: 600,
             letterSpacing: '0.1em', textTransform: 'uppercase' as const, color: '#3B82F6',
           }}>
-            ¿Conectamos?
+            ¿Listo para crecer?
           </span>
           <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(24px,2.8vw,40px)', fontWeight: 800, color: '#F1F5F9', margin: 0, lineHeight: 1.2 }}>
-            Si buscas a alguien que entienda tu negocio<br />
-            y te ayude a captar clientes,{' '}
-            <span style={gradText}>hablemos.</span>
+            ¿Listo para llevar tu negocio<br />
+            <span style={gradText}>al siguiente nivel?</span>
           </h2>
           <p style={{ color: '#94A3B8', fontSize: 16, lineHeight: 1.75, fontFamily: 'var(--font-body)', fontWeight: 300, margin: 0, maxWidth: 520 }}>
-            Si buscas a alguien que solo haga webs bonitas, quizás no soy yo. Pero si buscas a alguien que entienda tu negocio y te ayude a captar clientes de verdad, estoy aquí.
+            Si te sientes abrumado por el marketing digital o sientes que tu presencia online no refleja el valor real de tu negocio, hablemos. Una conversación de 30 minutos puede cambiar la dirección de tu estrategia.
           </p>
 
           {/* Botones */}
@@ -335,7 +333,7 @@ export default function SobreMiPage() {
                 el.style.boxShadow  = '0 0 28px rgba(37,99,255,0.3)'
               }}
             >
-              Agendar mi auditoría estratégica →
+              Solicitar mi diagnóstico 360 gratuito →
             </Link>
             <a
               href="https://wa.me/34642040364"
