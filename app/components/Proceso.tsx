@@ -10,28 +10,28 @@ const gradText: React.CSSProperties = {
 const steps = [
   {
     num: '01',
-    title: 'Diagnóstico y objetivos',
-    desc: 'Reviso tu negocio, tu oferta, tu cliente ideal y tu presencia actual para detectar qué está fallando y qué debe priorizarse.',
+    title: 'Diagnóstico',
+    desc: 'Analizamos tus fugas de ventas actuales y detectamos qué está impidiendo que tu web capte clientes.',
   },
   {
     num: '02',
-    title: 'Mensaje y estructura',
-    desc: 'Definimos qué debe comunicar la web, qué secciones necesita, qué llamadas a la acción tendrá y cómo ordenar la información para que sea clara y útil.',
+    title: 'Estrategia',
+    desc: 'Definimos qué decir y cómo decirlo para que tu cliente ideal te elija a ti y no a la competencia.',
   },
   {
     num: '03',
     title: 'Diseño y desarrollo',
-    desc: 'Diseño una propuesta visual alineada con tu marca y construyo la web o landing con enfoque profesional, responsive y orientado a conversión.',
+    desc: 'Creamos una interfaz limpia, rápida y optimizada para móviles con cada elemento en su lugar estratégico.',
   },
   {
     num: '04',
-    title: 'Captación y automatización',
-    desc: 'Si el proyecto lo incluye, conecto formularios, seguimiento básico y automatizaciones iniciales para que no pierdas oportunidades por falta de respuesta.',
+    title: 'Automatización',
+    desc: 'Ponemos el sistema a funcionar solo: formularios, respuestas automáticas y seguimiento sin intervención manual.',
   },
   {
     num: '05',
-    title: 'Revisión y lanzamiento',
-    desc: 'Ajustamos detalles, revisamos que todo funcione bien y dejamos la base digital lista para presentarte con más seriedad y empezar a captar mejor.',
+    title: 'Lanzamiento',
+    desc: 'Tu nueva presencia digital lista para captar contactos desde el primer día.',
   },
 ]
 
@@ -146,9 +146,8 @@ export default function Proceso() {
                 lineHeight: 1.2,
               }}
             >
-              Así trabajo para construir una{' '}
-              <span style={gradText}>presencia digital útil</span>{' '}
-              de verdad
+              Un proceso claro, sin sorpresas y orientado a{' '}
+              <span style={gradText}>objetivos</span>
             </h2>
           </div>
 
@@ -165,7 +164,7 @@ export default function Proceso() {
                 marginLeft: 'auto',
               }}
             >
-              Cada proyecto sigue un proceso claro de 5 fases para que nada quede al azar: desde entender tu negocio hasta dejar lista una presencia digital que realmente trabaje para ti.
+              Cada proyecto sigue fases claras para que sepas exactamente qué vamos a hacer, qué recibirás y cuándo. Sin improvisación.
             </p>
           </div>
         </div>

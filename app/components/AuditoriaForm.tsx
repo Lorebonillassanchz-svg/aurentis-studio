@@ -243,7 +243,7 @@ export default function AuditoriaForm() {
               }}
             >
               Cuéntame tu caso.{' '}
-              <span style={gradText}>Empezamos desde ahí.</span>
+              <span style={gradText}>Te diré qué está fallando en tu web.</span>
             </h2>
 
             <p
@@ -256,12 +256,12 @@ export default function AuditoriaForm() {
                 margin: '0 0 32px',
               }}
             >
-              Rellena el formulario y en menos de 48 horas te digo exactamente qué está fallando en tu presencia digital y qué harías primero si fuera tu negocio.
+              Rellena el formulario y en menos de 48h recibirás un análisis honesto de tu presencia digital. Sin compromiso y sin presión de venta.
             </p>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
               <TrustPoint text="Sin compromiso ni coste" />
-              <TrustPoint text="Respuesta personalizada, no plantilla" />
+              <TrustPoint text="Análisis honesto, no una propuesta de venta disfrazada" />
               <TrustPoint text="Solo te contacto si tiene sentido para los dos" />
             </div>
           </div>
@@ -469,7 +469,7 @@ export default function AuditoriaForm() {
                 el.style.boxShadow   = '0 0 28px rgba(37,99,255,0.3)'
               }}
             >
-              Solicitar auditoría gratuita →
+              Quiero mi análisis gratuito →
             </button>
 
             <p
@@ -482,7 +482,7 @@ export default function AuditoriaForm() {
                 margin: 0,
               }}
             >
-              Respondo en menos de 48h. Sin spam, sin ventas agresivas.
+              Respondo en menos de 48h. Sin spam, sin llamadas no solicitadas.
             </p>
           </form>
         </div>

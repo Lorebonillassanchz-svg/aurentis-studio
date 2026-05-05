@@ -184,19 +184,16 @@ export default function Hero() {
           {/* H1 */}
           <h1 style={{ margin:0, lineHeight:1.08, fontFamily:'var(--font-display)', animation:'fadeUp 0.55s ease 0.10s both' }}>
             <span style={{ display:'block', color:'#fff', fontSize:'clamp(40px, 4.6vw, 62px)', fontWeight:800 }}>
-              Tu presencia digital debe
+              Deja de tener una web «florero».
             </span>
             <span style={{ display:'block', fontSize:'clamp(40px, 4.6vw, 62px)', fontWeight:800, background:'linear-gradient(100deg, #3B82F6, #818CF8, #A78BFA)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text' }}>
-              ayudarte a vender,
-            </span>
-            <span style={{ display:'block', color:'#fff', fontSize:'clamp(35px, 4.05vw, 54.6px)', fontWeight:800, opacity:0.85 }}>
-              no solo a existir.
+              Empieza a captar clientes de verdad.
             </span>
           </h1>
 
           {/* Paragraph */}
           <p style={{ margin:0, color:'#94A3B8', fontSize:16.5, lineHeight:1.72, fontWeight:300, fontFamily:'var(--font-body)', maxWidth:480, animation:'fadeUp 0.55s ease 0.15s both' }}>
-            Diseño webs estratégicas, landing pages y sistemas básicos de captación para negocios que necesitan verse profesionales, comunicar mejor su oferta y convertir interés en contactos reales.
+            No diseñamos páginas bonitas; creamos sistemas de captación digital. Ayudamos a autónomos y PYMES a transformar visitas en ventas con una estrategia clara y profesional.
           </p>
 
           {/* Buttons */}
@@ -207,15 +204,15 @@ export default function Hero() {
               onMouseEnter={e => { const el = e.currentTarget as HTMLAnchorElement; el.style.background='#1d4fd8'; el.style.boxShadow='0 0 36px rgba(37,99,255,0.5)' }}
               onMouseLeave={e => { const el = e.currentTarget as HTMLAnchorElement; el.style.background='#2563FF'; el.style.boxShadow='0 0 28px rgba(37,99,255,0.35)' }}
             >
-              Solicitar propuesta →
+              Solicitar auditoría gratuita →
             </Link>
             <Link
-              href="#servicios"
+              href="#proceso"
               style={{ background:'transparent', color:'#fff', fontFamily:'var(--font-display)', fontWeight:500, fontSize:15, padding:'14px 30px', borderRadius:8, textDecoration:'none', border:'1px solid rgba(255,255,255,0.12)', transition:'border-color 0.2s, background 0.2s', display:'inline-block' }}
               onMouseEnter={e => { const el = e.currentTarget as HTMLAnchorElement; el.style.borderColor='rgba(255,255,255,0.25)'; el.style.background='rgba(255,255,255,0.04)' }}
               onMouseLeave={e => { const el = e.currentTarget as HTMLAnchorElement; el.style.borderColor='rgba(255,255,255,0.12)'; el.style.background='transparent' }}
             >
-              Ver servicios
+              Ver cómo trabajamos
             </Link>
           </div>
 
@@ -223,15 +220,15 @@ export default function Hero() {
           <div style={{ display:'flex', gap:8, flexWrap:'wrap', animation:'fadeUp 0.55s ease 0.25s both' }}>
             <span style={{ display:'inline-flex', alignItems:'center', gap:6, background:'rgba(37,99,255,0.07)', border:'1px solid rgba(37,99,255,0.2)', color:'#93C5FD', borderRadius:999, fontSize:12, fontWeight:500, padding:'6px 13px', fontFamily:'var(--font-body)' }}>
               <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><rect x="1" y="1" width="9" height="9" rx="1.5" stroke="#93C5FD" strokeWidth="1.3"/><line x1="1" y1="3.5" x2="10" y2="3.5" stroke="#93C5FD" strokeWidth="1.1"/></svg>
-              Web estratégica
+              Estrategia digital
             </span>
             <span style={{ display:'inline-flex', alignItems:'center', gap:6, background:'rgba(99,102,241,0.07)', border:'1px solid rgba(99,102,241,0.2)', color:'#C4B5FD', borderRadius:999, fontSize:12, fontWeight:500, padding:'6px 13px', fontFamily:'var(--font-body)' }}>
               <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M5.5 1L7 4.2H10.5L7.75 6.3L8.75 9.5L5.5 7.5L2.25 9.5L3.25 6.3L0.5 4.2H4L5.5 1Z" stroke="#C4B5FD" strokeWidth="1.1" strokeLinejoin="round"/></svg>
-              Captación clara
+              Captación de clientes
             </span>
             <span style={{ display:'inline-flex', alignItems:'center', gap:6, background:'rgba(52,211,153,0.06)', border:'1px solid rgba(52,211,153,0.2)', color:'#6EE7B7', borderRadius:999, fontSize:12, fontWeight:500, padding:'6px 13px', fontFamily:'var(--font-body)' }}>
               <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><circle cx="5.5" cy="5.5" r="4" stroke="#6EE7B7" strokeWidth="1.1"/><path d="M5.5 1.5V5.5L8 8" stroke="#6EE7B7" strokeWidth="1.3" strokeLinecap="round"/></svg>
-              Automatización inicial
+              Automatización 24/7
             </span>
           </div>
         </div>

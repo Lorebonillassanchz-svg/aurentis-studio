@@ -43,18 +43,18 @@ function LayersIcon() {
 const items = [
   {
     icon: <ClockIcon />,
-    title: '100% Enfoque estratégico',
-    desc: 'Cada solución se construye sobre tu objetivo de negocio, no sobre plantillas genéricas.',
+    title: '100% Estrategia',
+    desc: 'Tu web no es un gasto, es una inversión diseñada para darte retorno desde el primer mes.',
   },
   {
     icon: <PulseIcon />,
-    title: 'Resultados medibles',
-    desc: 'Webs que generan leads, no solo visitas. Métricas claras desde el primer mes.',
+    title: 'Resultados Medibles',
+    desc: 'Olvida las métricas de vanidad. Nos enfocamos en leads, llamadas y ventas reales.',
   },
   {
     icon: <DocIcon />,
-    title: 'Automatización incluida',
-    desc: 'Sistemas que trabajan por ti: seguimiento, respuestas y recordatorios sin intervención manual.',
+    title: 'Automatización Real',
+    desc: 'Hacemos que tu web trabaje por ti 24/7, gestionando tus contactos mientras tú te centras en tu negocio.',
   },
   {
     icon: <LayersIcon />,

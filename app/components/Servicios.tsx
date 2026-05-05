@@ -149,8 +149,8 @@ export default function Servicios() {
             className="reveal"
             style={{ fontFamily:'var(--font-display)', fontSize:'clamp(28px,3.2vw,42px)', fontWeight:800, color:'#F1F5F9', margin:'0 0 0', lineHeight:1.15 }}
           >
-            Soluciones que generan{' '}
-            <span style={gradText}>impacto real</span>
+            Soluciones de marketing diseñadas para que tu negocio{' '}
+            <span style={gradText}>escale</span>
           </h2>
         </div>
 
@@ -171,7 +171,7 @@ export default function Servicios() {
             </div>
 
             <p style={{ color:'#94A3B8', fontSize:14.5, lineHeight:1.7, fontFamily:'var(--font-body)', fontWeight:300, flexGrow:1, margin:'0 0 24px' }}>
-              Webs profesionales para negocios que necesitan una imagen clara, moderna y confiable para presentar sus servicios y convertir visitas en contactos.
+              Tu escaparate digital de alto nivel. Una web que no solo se ve profesional, sino que genera confianza inmediata y convierte visitas en contactos reales.
             </p>
 
             <Link
@@ -186,10 +186,10 @@ export default function Servicios() {
           <div className="card-normal reveal reveal-delay-1">
             <div style={iconBox(44)}><EmailIcon size={20} /></div>
             <h3 style={{ fontFamily:'var(--font-display)', fontSize:16, fontWeight:700, color:'#F1F5F9', margin:'0 0 10px', lineHeight:1.3 }}>
-              Landing de Captación
+              Landings de Captación
             </h3>
             <p style={{ color:'#94A3B8', fontSize:13, lineHeight:1.65, fontFamily:'var(--font-body)', fontWeight:300, flexGrow:1, margin:'0 0 20px' }}>
-              Páginas enfocadas en una sola oferta con estructura estratégica y llamadas a la acción claras para generar leads con intención.
+              La vía rápida para vender un servicio específico. Diseñadas para maximizar la conversión y reducir tu coste por cliente.
             </p>
             <Link href="/servicios/landing-captacion" style={{ color:'#60A5FA', fontFamily:'var(--font-display)', fontWeight:600, fontSize:13, textDecoration:'none', marginTop:'auto' }}>
               Saber más →
@@ -200,10 +200,10 @@ export default function Servicios() {
           <div className="card-normal reveal reveal-delay-2">
             <div style={iconBox(44)}><StarIcon size={20} /></div>
             <h3 style={{ fontFamily:'var(--font-display)', fontSize:16, fontWeight:700, color:'#F1F5F9', margin:'0 0 10px', lineHeight:1.3 }}>
-              Sistema de Captación y Seguimiento
+              Sistemas de Venta
             </h3>
             <p style={{ color:'#94A3B8', fontSize:13, lineHeight:1.65, fontFamily:'var(--font-body)', fontWeight:300, flexGrow:1, margin:'0 0 20px' }}>
-              Automatización de formularios y seguimiento para que ninguna oportunidad se pierda sin hacerlo todo a mano.
+              Conecta tu web con formularios y respuestas automáticas. No dejes escapar ni un solo cliente por falta de tiempo.
             </p>
             <Link href="/servicios/sistema-captacion" style={{ color:'#60A5FA', fontFamily:'var(--font-display)', fontWeight:600, fontSize:13, textDecoration:'none', marginTop:'auto' }}>
               Saber más →
