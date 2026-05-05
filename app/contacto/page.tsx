@@ -112,15 +112,34 @@ export default function ContactoPage() {
               Contacto
             </span>
             <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(24px, 2.8vw, 38px)', fontWeight: 800, color: '#F1F5F9', margin: 0, lineHeight: 1.15 }}>
-              Cuéntame en qué{' '}
-              <span style={gradText}>puedo ayudarte.</span>
+              <span style={{ display: 'block' }}>Construyamos el sistema</span>
+              <span style={gradText}>que traerá tus próximos clientes.</span>
             </h1>
             <p style={{ color: '#94A3B8', fontSize: 15.5, lineHeight: 1.75, fontFamily: 'var(--font-body)', fontWeight: 300, margin: 0 }}>
-              Si tienes un proyecto en mente, una duda sobre qué servicio necesitas o simplemente quieres explorar si tiene sentido trabajar juntos, escríbeme. Respondo en menos de 48 horas.
+              Ya sea que necesites una web que convierta, redes sociales que generen comunidad o aparecer el primero en Google, estoy aquí para hacerlo realidad. Cuéntame tu caso y diseñaremos un plan a medida para tu negocio.
             </p>
 
+            {/* Checklist de valor */}
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 12, marginTop: 4 }}>
+              {[
+                'Estrategia multicanal — Web, RRSS y SEO trabajando juntos.',
+                'Enfoque total en resultados y ventas, no en métricas de vanidad.',
+                'Trato directo y transparencia en cada paso del proyecto.',
+              ].map(item => (
+                <div key={item} style={{ display: 'flex', alignItems: 'flex-start', gap: 12 }}>
+                  <div style={{ width: 22, height: 22, borderRadius: '50%', background: 'rgba(37,99,255,0.1)', border: '1px solid rgba(37,99,255,0.25)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: 1 }}>
+                    <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M2 5.5l2.5 2.5 4.5-4.5" stroke="#60A5FA" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                  </div>
+                  <span style={{ color: '#94A3B8', fontSize: 14, fontFamily: 'var(--font-body)', fontWeight: 300, lineHeight: 1.55 }}>{item}</span>
+                </div>
+              ))}
+            </div>
+
+            {/* Separador */}
+            <div style={{ height: 1, background: 'rgba(255,255,255,0.06)', margin: '4px 0' }} />
+
             {/* Contact items */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 16, marginTop: 8 }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
               <ContactItem label="Email" icon={
                 <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="3" width="14" height="10" rx="1.5" stroke="#60A5FA" strokeWidth="1.2"/><path d="M1 6l7 4.5L15 6" stroke="#60A5FA" strokeWidth="1.2" strokeLinecap="round"/></svg>
               }>
@@ -185,23 +204,22 @@ export default function ContactoPage() {
                   <FieldLabel>Tipo de proyecto</FieldLabel>
                   <select value={tipo} onChange={e => setTipo(e.target.value)} onFocus={() => setFocused('tipo')} onBlur={() => setFocused(null)} className="ct-input ct-select" style={inputStyle(focused === 'tipo')}>
                     <option value="">Selecciona una opción</option>
-                    <option value="web">Web completa</option>
-                    <option value="landing">Landing page</option>
-                    <option value="captacion">Sistema de captación</option>
-                    <option value="imagen">Imagen digital coherente</option>
-                    <option value="lanzamiento">Lanzamiento digital</option>
-                    <option value="otro">No lo tengo claro aún</option>
+                    <option value="web">Diseño Web o Landing Page</option>
+                    <option value="rrss">Gestión de Redes Sociales (Instagram, TikTok, LinkedIn)</option>
+                    <option value="seo">Posicionamiento SEO / Google Business</option>
+                    <option value="ads">Publicidad Online (Meta Ads / Google Ads)</option>
+                    <option value="pack">Pack de Marketing Integral (Todo en uno)</option>
                   </select>
                 </div>
                 <div>
-                  <FieldLabel>¿En qué puedo ayudarte? <span style={{ color: '#3B82F6' }}>*</span></FieldLabel>
-                  <textarea required rows={5} placeholder="Cuéntame brevemente tu situación, qué necesitas o qué dudas tienes." value={mensaje} onChange={e => setMensaje(e.target.value)} onFocus={() => setFocused('mensaje')} onBlur={() => setFocused(null)} className="ct-input" style={{ ...inputStyle(focused === 'mensaje'), minHeight: 130, resize: 'vertical', lineHeight: 1.6 }} />
+                  <FieldLabel>¿En qué punto se encuentra tu negocio y qué te gustaría lograr? <span style={{ color: '#3B82F6' }}>*</span></FieldLabel>
+                  <textarea required rows={5} placeholder="Cuéntame dónde estás ahora y qué resultado concreto buscas. Cuanto más específico seas, mejor podré ayudarte." value={mensaje} onChange={e => setMensaje(e.target.value)} onFocus={() => setFocused('mensaje')} onBlur={() => setFocused(null)} className="ct-input" style={{ ...inputStyle(focused === 'mensaje'), minHeight: 130, resize: 'vertical', lineHeight: 1.6 }} />
                 </div>
                 <button type="submit" className="ct-btn" style={{ width: '100%', background: '#2563FF', color: '#fff', fontFamily: 'var(--font-display)', fontSize: 15, fontWeight: 600, padding: 14, borderRadius: 9, border: 'none', cursor: 'pointer', boxShadow: '0 0 28px rgba(37,99,255,0.3)' }}>
-                  Enviar mensaje →
+                  Solicitar mi plan de crecimiento gratuito →
                 </button>
                 <p style={{ textAlign: 'center', fontSize: 12.5, color: '#4B5A72', fontStyle: 'italic', fontFamily: 'var(--font-body)', margin: 0 }}>
-                  Respondo en menos de 48h. Sin spam ni ventas agresivas.
+                  Analizo tu presencia digital actual (web y redes) antes de nuestra primera charla.
                 </p>
               </form>
             )}
