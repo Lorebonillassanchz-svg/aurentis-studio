@@ -25,9 +25,7 @@ export const metadata: Metadata = {
   description: 'Diseño web estratégico, landing pages y sistemas de captación para negocios que quieren verse profesionales y convertir mejor.',
   keywords: ['diseño web', 'presencia digital', 'automatización comercial', 'marketing digital'],
   icons: {
-    icon: '/favicon.png',
     apple: '/apple-icon.png',
-    shortcut: '/favicon.png',
   },
   openGraph: {
     title: 'Aurentis Studio',

@@ -2,6 +2,7 @@ import { ImageResponse } from 'next/og'
 
 export const size = { width: 32, height: 32 }
 export const contentType = 'image/png'
+export const runtime = 'nodejs'
 
 export default function Icon() {
   return new ImageResponse(
@@ -14,27 +15,26 @@ export default function Icon() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          borderRadius: '6px',
         }}
       >
         <svg
-          width="20"
-          height="20"
+          width="24"
+          height="24"
           viewBox="0 0 32 32"
           fill="none"
         >
           <polygon
-            points="16,3 29,27 3,27"
+            points="16,2 30,28 2,28"
             fill="none"
             stroke="white"
-            strokeWidth="2.2"
+            strokeWidth="2.5"
             strokeLinejoin="round"
           />
           <polygon
-            points="16,9 24,25 8,25"
-            fill="rgba(37,99,255,0.5)"
-            stroke="rgba(37,99,255,0.8)"
-            strokeWidth="1"
+            points="16,9 24,26 8,26"
+            fill="#2563FF"
+            stroke="#2563FF"
+            strokeWidth="0.5"
             strokeLinejoin="round"
           />
         </svg>
