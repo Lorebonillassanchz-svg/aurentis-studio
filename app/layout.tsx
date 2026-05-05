@@ -23,17 +23,6 @@ const dmSans = DM_Sans({
 export const metadata: Metadata = {
   title: 'Aurentis Studio — Presencia digital estratégica',
   description: 'Diseño web estratégico, landing pages y sistemas de captación para negocios que quieren verse profesionales y convertir mejor.',
-  keywords: ['diseño web', 'presencia digital', 'automatización comercial', 'marketing digital'],
-  icons: {
-    apple: '/apple-icon.png',
-  },
-  openGraph: {
-    title: 'Aurentis Studio',
-    description: 'Presencia digital estratégica',
-    siteName: 'Aurentis Studio',
-    locale: 'es_ES',
-    type: 'website',
-  },
 }
 
 export default function RootLayout({
