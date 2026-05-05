@@ -64,7 +64,7 @@ const MKTG_SERVICES = [
     href: '/servicios/marketing-digital#redes',
     color: '#A855F7',
     colorRgb: '168,85,247',
-    image: 'https://images.unsplash.com/photo-1611162616305-c69b3037c7bb?w=800&q=80&fit=crop',
+    image: 'https://images.unsplash.com/photo-1562577309-4932fdd64cd1?w=800&q=80&fit=crop',
     pills: ['Community Manager', 'Contenido visual', 'Calendario editorial'],
     icon: (
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none">

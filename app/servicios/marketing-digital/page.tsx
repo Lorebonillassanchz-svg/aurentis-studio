@@ -51,7 +51,7 @@ const blocks = [
     id: 'redes',
     title: 'Gestión de redes sociales y community manager',
     desc: 'Gestionamos tus redes de principio a fin: estrategia, creación de contenido, publicación y gestión de la comunidad. Instagram, Facebook, LinkedIn y TikTok — cada red con su voz y su formato.',
-    image: 'https://images.unsplash.com/photo-1611162616305-c69b3037c7bb?w=600&q=80&fit=crop',
+    image: 'https://images.unsplash.com/photo-1562577309-4932fdd64cd1?w=800&q=80&fit=crop',
     imageRight: true,
     items: [
       'Plan de contenidos mensual con objetivos medibles',
