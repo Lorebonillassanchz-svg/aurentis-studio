@@ -193,7 +193,7 @@ export default function AuditoriaForm() {
       console.log('Brevo API Key presente:', !!process.env.NEXT_PUBLIC_BREVO_API_KEY)
       try {
         const BREVO_API_KEY = process.env.NEXT_PUBLIC_BREVO_API_KEY || ''
-        await fetch('https://api.brevo.com/v3/smtp/email', {
+        const brevoResponse = await fetch('https://api.brevo.com/v3/smtp/email', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -208,6 +208,9 @@ export default function AuditoriaForm() {
             },
           }),
         })
+        const brevoData = await brevoResponse.json()
+        console.log('Brevo status:', brevoResponse.status)
+        console.log('Brevo response:', JSON.stringify(brevoData))
       } catch (error) {
         console.error('Error enviando email de bienvenida:', error)
         // No bloqueamos el flujo principal si falla Brevo
