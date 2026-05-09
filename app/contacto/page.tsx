@@ -89,6 +89,30 @@ export default function ContactoPage() {
           origen: 'Aurentis Studio — Formulario de contacto',
         }),
       })
+
+      // Correo de bienvenida vía Brevo
+      try {
+        const BREVO_API_KEY = process.env.NEXT_PUBLIC_BREVO_API_KEY || ''
+        await fetch('https://api.brevo.com/v3/smtp/email', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'api-key': BREVO_API_KEY,
+          },
+          body: JSON.stringify({
+            to: [{ email, name: nombre }],
+            templateId: 1,
+            params: {
+              nombre,
+              tipoProyecto: tipo || '',
+            },
+          }),
+        })
+      } catch (error) {
+        console.error('Error enviando email de bienvenida:', error)
+        // No bloqueamos el flujo principal si falla Brevo
+      }
+
       setSent(true)
     } catch {
       setSubmitError(true)
