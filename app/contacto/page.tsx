@@ -117,6 +117,33 @@ export default function ContactoPage() {
         // No bloqueamos el flujo principal si falla Brevo
       }
 
+      // Notificación interna con los datos del lead
+      try {
+        const BREVO_API_KEY = process.env.NEXT_PUBLIC_BREVO_API_KEY || ''
+        await fetch('https://api.brevo.com/v3/smtp/email', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'api-key': BREVO_API_KEY,
+          },
+          body: JSON.stringify({
+            sender: { name: 'Aurentis Studio Web', email: 'aurentistudio@outlook.com' },
+            to: [{ email: 'aurentistudio@outlook.com', name: 'Aurentis Studio' }],
+            subject: `Nuevo lead: ${nombre}`,
+            htmlContent: `
+              <h2>Nuevo formulario recibido</h2>
+              <p><b>Nombre:</b> ${nombre}</p>
+              <p><b>Email:</b> ${email}</p>
+              <p><b>WhatsApp:</b> No indicado</p>
+              <p><b>Tipo de proyecto:</b> ${tipo || 'No indicado'}</p>
+              <p><b>Mensaje:</b> ${mensaje || 'No indicado'}</p>
+            `,
+          }),
+        })
+      } catch (error) {
+        console.error('Error enviando notificación interna:', error)
+      }
+
       setSent(true)
     } catch {
       setSubmitError(true)
