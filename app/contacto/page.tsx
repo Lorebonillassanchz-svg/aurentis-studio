@@ -91,6 +91,7 @@ export default function ContactoPage() {
       })
 
       // Correo de bienvenida vía Brevo
+      console.log('Brevo API Key presente:', !!process.env.NEXT_PUBLIC_BREVO_API_KEY)
       try {
         const BREVO_API_KEY = process.env.NEXT_PUBLIC_BREVO_API_KEY || ''
         await fetch('https://api.brevo.com/v3/smtp/email', {
