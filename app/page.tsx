@@ -29,6 +29,7 @@ export default function Home() {
         }
         subtitle="No solo una presencia visual — una herramienta que comunica, capta y convierte."
         height={320}
+        eager
       />
       <Servicios />
       <SplitSection />

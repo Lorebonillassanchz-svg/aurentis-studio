@@ -6,9 +6,10 @@ interface VisualBandProps {
   title: React.ReactNode
   subtitle?: string
   height?: number
+  eager?: boolean
 }
 
-export default function VisualBand({ imageSrc, title, subtitle, height = 320 }: VisualBandProps) {
+export default function VisualBand({ imageSrc, title, subtitle, height = 320, eager = false }: VisualBandProps) {
   return (
     <div
       style={{
@@ -27,6 +28,7 @@ export default function VisualBand({ imageSrc, title, subtitle, height = 320 }: 
         src={imageSrc}
         alt=""
         fill
+        priority={eager}
         style={{ objectFit: 'cover', opacity: 0.3, mixBlendMode: 'luminosity' }}
       />
 
