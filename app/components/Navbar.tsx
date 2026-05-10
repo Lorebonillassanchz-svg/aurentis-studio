@@ -8,17 +8,17 @@ const DROPDOWN_GROUPS = [
   {
     label: 'Diseño web',
     items: [
-      { label: 'Tiendas Online', desc: 'WooCommerce · PrestaShop · Shopify', href: '/servicios/diseno-tiendas-online', color: '#2563FF' },
-      { label: 'Web Corporativa', desc: 'Webs de empresa y servicios profesionales', href: '/servicios/diseno-web-corporativa', color: '#6366F1' },
+      { label: 'Diseño Web Profesional', desc: 'Web seria, funcional y que convierte', href: '/servicios/diseno-web-corporativa', color: '#2563FF' },
+      { label: 'Tienda Online',          desc: 'WooCommerce · Shopify · pasarela de pago', href: '/servicios/diseno-tiendas-online', color: '#6366F1' },
     ],
   },
   {
     label: 'Marketing digital',
     items: [
-      { label: 'Posicionamiento SEO', desc: 'Primera página de Google sin publicidad', href: '/servicios/posicionamiento-web', color: '#0EA5E9' },
-      { label: 'Redes Sociales', desc: 'Community manager y Meta Ads', href: '/servicios/marketing-digital#redes', color: '#A855F7' },
-      { label: 'Email Marketing', desc: 'Campañas de email y automatizaciones', href: '/servicios/marketing-digital#email', color: '#F59E0B' },
-      { label: 'Posicionamiento GEO', desc: 'Visibilidad en Google Maps y búsqueda local', href: '/servicios/marketing-digital#geo', color: '#16A34A' },
+      { label: 'Posicionamiento SEO',            desc: 'Primera página de Google sin publicidad', href: '/servicios/posicionamiento-web',   color: '#0EA5E9' },
+      { label: 'Community Manager',              desc: 'Redes sociales, Reels y TikTok',          href: '/servicios/community-manager',     color: '#A855F7' },
+      { label: 'Meta Ads & Google Ads',          desc: 'Publicidad que trae clientes desde el día 1', href: '/servicios/meta-ads',         color: '#F59E0B' },
+      { label: 'Email Marketing & Automatización', desc: 'Secuencias y newsletters en automático', href: '/servicios/email-marketing',     color: '#16A34A' },
     ],
   },
 ]
