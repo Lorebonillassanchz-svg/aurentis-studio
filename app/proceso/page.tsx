@@ -40,24 +40,36 @@ const steps = [
 /* ── FAQ data ─────────────────────────────────────────────── */
 const faqs = [
   {
-    q: '¿Cuánto tarda un proyecto?',
-    a: 'Depende del alcance. Una landing de captación puede estar lista en 1-2 semanas. Una web completa suele tardar entre 3 y 5 semanas. Te doy un plazo estimado claro antes de empezar.',
+    q: '¿Cuánto tarda en estar lista mi web o campaña?',
+    a: 'Depende del proyecto. Un diseño web profesional suele estar listo en 3 a 5 semanas desde que empezamos. Una tienda online puede tardar entre 4 y 6 semanas según el catálogo. Las campañas de publicidad en Meta Ads o Google Ads se activan en menos de una semana. Antes de empezar te doy un plazo estimado por escrito para que puedas planificarlo.',
   },
   {
-    q: '¿Cuánto cuesta?',
-    a: 'Cada proyecto es diferente, por eso no publico tarifas fijas. Lo que sí puedo decirte es que trabajo con presupuestos adaptados a negocios pequeños y autónomos. Cuéntame tu caso y te hago una propuesta sin compromiso.',
+    q: '¿Cuánto cuesta contratar un servicio de diseño web o marketing digital?',
+    a: 'Los precios varían según el servicio y el alcance del proyecto. Un diseño web profesional parte desde 500€, la gestión de redes sociales desde 200€/mes y las campañas de publicidad desde 150€/mes en gestión. Si quieres saber qué presupuesto necesitas para tu caso concreto, cuéntame tu proyecto y te hago una propuesta personalizada en menos de 48h sin compromiso.',
   },
   {
     q: '¿Qué necesito tener preparado antes de empezar?',
-    a: 'No mucho. Con una idea clara de tu negocio, tu cliente y lo que quieres conseguir es suficiente para empezar. Yo me encargo de estructurar y organizar el resto.',
+    a: 'Mucho menos de lo que crees. Con tener claro a qué te dedicas, quién es tu cliente y qué quieres conseguir es suficiente para arrancar. No necesitas textos redactados, fotos profesionales ni nada técnico. De la estructura, el contenido y la estrategia me encargo yo. Si ya tienes algún material, mejor, pero no es imprescindible.',
   },
   {
-    q: '¿Puedo pedirte cambios después de entregar el proyecto?',
-    a: 'Las dos rondas de revisión están incluidas antes del lanzamiento. Cambios posteriores se presupuestan aparte según el alcance.',
+    q: '¿Apareceré en Google con una web nueva?',
+    a: 'Una web bien construida es el punto de partida para el posicionamiento SEO, pero posicionarse en Google lleva tiempo — generalmente entre 3 y 6 meses para ver resultados orgánicos reales. Lo que sí hacemos desde el primer día es optimizar cada página con las palabras clave correctas, la estructura técnica adecuada y el contenido que Google necesita para indexarte bien. Si necesitas visibilidad inmediata, combinamos SEO con campañas de publicidad mientras el posicionamiento orgánico madura.',
   },
   {
-    q: '¿Trabajas con negocios de cualquier sector?',
-    a: 'Sí, aunque me especializo en negocios de servicios, consultoría, formación y comercio local. Si tienes dudas sobre si tu sector encaja, escríbeme y te lo digo directamente.',
+    q: '¿Puedo pedirte cambios una vez entregado el proyecto?',
+    a: 'Sí. Todos los proyectos incluyen dos rondas de revisión antes del lanzamiento para que el resultado sea exactamente lo que necesitas. Los cambios posteriores al lanzamiento se presupuestan aparte según el alcance. En servicios mensuales como gestión de redes o campañas, los ajustes están incluidos dentro del servicio.',
+  },
+  {
+    q: '¿Trabajas solo con negocios de un sector concreto?',
+    a: 'No. Trabajo con autónomos, marcas personales, pequeños negocios locales y PYMES de cualquier sector. Me especializo especialmente en negocios de servicios, consultoría, formación, comercio local y creadores de contenido que quieren monetizar su marca personal. Si tienes dudas sobre si tu proyecto encaja, escríbeme y te lo digo directamente.',
+  },
+  {
+    q: '¿Gestionas las redes sociales de mi negocio desde cero?',
+    a: 'Sí. Me encargo de todo: estrategia de contenido, diseño de publicaciones, edición de vídeo para Reels y TikTok, calendario editorial y crecimiento de comunidad. No necesitas tener experiencia en redes ni saber qué publicar. Analizamos tu negocio, definimos tu voz de marca y construimos una presencia digital coherente que atraiga a tu cliente ideal.',
+  },
+  {
+    q: '¿Qué diferencia hay entre SEO y publicidad de pago?',
+    a: 'El SEO o posicionamiento orgánico te ayuda a aparecer en Google de forma gratuita cuando alguien busca lo que ofreces. Los resultados tardan meses pero son duraderos y no requieren inversión publicitaria continua. La publicidad de pago en Meta Ads o Google Ads trae resultados desde el primer día pero requiere un presupuesto mensual de inversión en anuncios. La estrategia más efectiva combina los dos: publicidad mientras el SEO madura.',
   },
 ]
 
@@ -103,7 +115,7 @@ function FaqItem({ q, a }: { q: string; a: string }) {
       </button>
       <div
         style={{
-          maxHeight: open ? 300 : 0,
+          maxHeight: open ? 600 : 0,
           overflow: 'hidden',
           transition: 'max-height 0.3s ease',
         }}
