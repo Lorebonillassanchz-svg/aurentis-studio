@@ -103,7 +103,7 @@ export default function DisenoWebCorporativaPage() {
       `}</style>
 
       {/* ── BREADCRUMB ───────────────────────────────────── */}
-      <div style={{ background: '#0B0F1A', padding: '16px 24px', position: 'relative', zIndex: 1 }}>
+      <div style={{ background: '#0B0F1A', padding: '16px 24px', paddingTop: 86, position: 'relative', zIndex: 1 }}>
         <Link
           href="/servicios"
           style={{ fontFamily: 'var(--font-body)', fontSize: 14, fontWeight: 400, color: '#818CF8', textDecoration: 'none', transition: 'color 0.2s', display: 'inline-block' }}
@@ -115,7 +115,7 @@ export default function DisenoWebCorporativaPage() {
       </div>
 
       {/* ── S1: HERO ─────────────────────────────────────── */}
-      <section style={{ background: '#0B0F1A', padding: '140px 5% 100px', position: 'relative', overflow: 'hidden' }}>
+      <section style={{ background: '#0B0F1A', padding: '60px 5% 100px', position: 'relative', overflow: 'hidden' }}>
 
         {/* Dot grid — hero only, very subtle */}
         <div style={{
