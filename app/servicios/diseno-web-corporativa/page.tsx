@@ -104,10 +104,33 @@ export default function DisenoWebCorporativaPage() {
 
       {/* ── S1: HERO ─────────────────────────────────────── */}
       <section style={{ background: '#0B0F1A', padding: '140px 5% 100px', position: 'relative', overflow: 'hidden' }}>
-        <div style={{ position: 'absolute', top: '-15%', right: '-10%', width: 680, height: 680, borderRadius: '50%', background: 'radial-gradient(circle, rgba(99,102,241,0.11) 0%, rgba(37,99,255,0.05) 45%, transparent 70%)', filter: 'blur(70px)', pointerEvents: 'none' }} />
+
+        {/* Dot grid — hero only, very subtle */}
+        <div style={{
+          position: 'absolute', inset: 0, zIndex: 0, pointerEvents: 'none',
+          backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px)',
+          backgroundSize: '28px 28px',
+        }} />
+
+        {/* Radial gradient overlay centre-right */}
+        <div style={{
+          position: 'absolute', inset: 0, zIndex: 0, pointerEvents: 'none',
+          background: 'radial-gradient(ellipse at 70% 50%, rgba(37,99,255,0.15) 0%, transparent 60%)',
+        }} />
+
+        {/* Blob top-right */}
+        <div style={{
+          position: 'absolute', top: '-20%', right: '-12%',
+          width: 750, height: 750, borderRadius: '50%',
+          background: 'rgba(37,99,255,0.12)',
+          filter: 'blur(110px)',
+          pointerEvents: 'none', zIndex: 0,
+        }} />
 
         <div style={{ maxWidth: 860, margin: '0 auto', position: 'relative', zIndex: 1 }}>
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={trans(0)}>
+            {/* Decorative horizontal line */}
+            <div style={{ width: 40, height: 2, background: '#2563FF', borderRadius: 2, marginBottom: 14 }} />
             <span style={labelStyle}>Diseño web profesional</span>
           </motion.div>
 
@@ -132,9 +155,25 @@ export default function DisenoWebCorporativaPage() {
         </div>
       </section>
 
+      {/* Gradient divider hero → problemas */}
+      <div style={{
+        height: 1,
+        background: 'linear-gradient(90deg, transparent 0%, rgba(37,99,255,0.35) 40%, rgba(99,102,241,0.25) 60%, transparent 100%)',
+      }} />
+
       {/* ── S2: PROBLEMAS ────────────────────────────────── */}
-      <section style={{ background: '#0B0F1A', padding: '80px 5% 100px', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
-        <div style={{ maxWidth: 1100, margin: '0 auto' }}>
+      <section style={{ background: '#0D1117', padding: '80px 5% 100px', position: 'relative', overflow: 'hidden' }}>
+
+        {/* Blob bottom-left global */}
+        <div style={{
+          position: 'absolute', bottom: '-30%', left: '-15%',
+          width: 700, height: 700, borderRadius: '50%',
+          background: 'rgba(99,102,241,0.10)',
+          filter: 'blur(120px)',
+          pointerEvents: 'none', zIndex: 0,
+        }} />
+
+        <div style={{ maxWidth: 1100, margin: '0 auto', position: 'relative', zIndex: 1 }}>
           <motion.div
             initial={{ opacity: 0, y: 22 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={trans()}
             style={{ marginBottom: 48 }}
@@ -169,9 +208,25 @@ export default function DisenoWebCorporativaPage() {
         </div>
       </section>
 
+      {/* Gradient divider problemas → incluye */}
+      <div style={{
+        height: 1,
+        background: 'linear-gradient(90deg, transparent 0%, rgba(99,102,241,0.2) 50%, transparent 100%)',
+      }} />
+
       {/* ── S3: LO QUE INCLUYE ───────────────────────────── */}
-      <section style={{ background: '#0F172A', padding: '100px 5%', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
-        <div style={{ maxWidth: 1000, margin: '0 auto' }}>
+      <section style={{ background: '#0B0F1A', padding: '100px 5%', position: 'relative', overflow: 'hidden' }}>
+
+        {/* Blob decorativo azul esquina derecha */}
+        <div style={{
+          position: 'absolute', top: '-10%', right: '-8%',
+          width: 520, height: 520, borderRadius: '50%',
+          background: 'rgba(37,99,255,0.08)',
+          filter: 'blur(90px)',
+          pointerEvents: 'none', zIndex: 0,
+        }} />
+
+        <div style={{ maxWidth: 1000, margin: '0 auto', position: 'relative', zIndex: 1 }}>
           <motion.div
             initial={{ opacity: 0, y: 22 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={trans()}
             style={{ marginBottom: 48 }}
@@ -204,13 +259,25 @@ export default function DisenoWebCorporativaPage() {
         </div>
       </section>
 
+      {/* Gradient divider incluye → párrafo */}
+      <div style={{
+        height: 1,
+        background: 'linear-gradient(90deg, transparent 0%, rgba(37,99,255,0.18) 50%, transparent 100%)',
+      }} />
+
       {/* ── S4: PÁRRAFO DESCRIPTIVO ──────────────────────── */}
-      <section style={{ background: '#0F172A', padding: '0 5% 100px' }}>
+      <section style={{ background: '#0F172A', padding: '100px 5%' }}>
         <motion.div
           initial={{ opacity: 0, y: 22 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={trans()}
           style={{ maxWidth: 800, margin: '0 auto', position: 'relative' }}
         >
-          <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: 4, background: 'linear-gradient(to bottom, #2563FF, #6366F1)', borderRadius: 2 }} />
+          {/* Borde izquierdo con glow */}
+          <div style={{
+            position: 'absolute', left: 0, top: 0, bottom: 0, width: 4,
+            background: 'linear-gradient(to bottom, #2563FF, #6366F1)',
+            borderRadius: 2,
+            boxShadow: '0 0 18px 3px rgba(37,99,255,0.38)',
+          }} />
           <div style={{ paddingLeft: 28 }}>
             <p style={{ color: '#94A3B8', fontSize: 15.5, lineHeight: 1.88, fontFamily: 'var(--font-body)', fontWeight: 300, margin: '0 0 20px' }}>
               ¿Sabías que el 75% de los usuarios juzga la credibilidad de un negocio por el diseño de su web en menos de 3 segundos? Antes de leer una sola línea de lo que ofreces, tu cliente potencial ya ha decidido si confía en ti o no. No es superficial — es psicología humana básica. El cerebro procesa imágenes 60.000 veces más rápido que el texto, y una web lenta, desorganizada o visualmente anticuada activa de forma automática una señal de alerta.
@@ -225,8 +292,14 @@ export default function DisenoWebCorporativaPage() {
         </motion.div>
       </section>
 
+      {/* Gradient divider párrafo → split */}
+      <div style={{
+        height: 1,
+        background: 'linear-gradient(90deg, transparent 0%, rgba(99,102,241,0.2) 50%, transparent 100%)',
+      }} />
+
       {/* ── S5: SPLIT IMAGEN ─────────────────────────────── */}
-      <section style={{ background: '#0B0F1A', padding: '100px 5%', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+      <section style={{ background: '#0B0F1A', padding: '100px 5%' }}>
         <div className="dwc-split" style={{ maxWidth: 1100, margin: '0 auto' }}>
           <motion.div
             initial={{ opacity: 0, x: -24 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={trans()}
@@ -264,8 +337,33 @@ export default function DisenoWebCorporativaPage() {
       </section>
 
       {/* ── S6: CTA FINAL ────────────────────────────────── */}
-      <section style={{ background: 'linear-gradient(160deg, #0F172A 0%, #141C2E 100%)', padding: '110px 5%', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
-        <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 700, height: 400, borderRadius: '50%', background: 'radial-gradient(ellipse, rgba(37,99,255,0.07) 0%, transparent 70%)', filter: 'blur(50px)', pointerEvents: 'none' }} />
+      <section style={{
+        background: 'linear-gradient(135deg, #0F172A 0%, #141C2E 50%, #0F172A 100%)',
+        padding: '110px 5%',
+        textAlign: 'center',
+        position: 'relative',
+        overflow: 'hidden',
+      }}>
+
+        {/* Blob azul-violeta centrado */}
+        <div style={{
+          position: 'absolute', top: '50%', left: '50%',
+          transform: 'translate(-50%, -50%)',
+          width: 800, height: 500, borderRadius: '50%',
+          background: 'radial-gradient(ellipse, rgba(99,102,241,0.15) 0%, rgba(37,99,255,0.10) 35%, transparent 70%)',
+          filter: 'blur(60px)',
+          pointerEvents: 'none', zIndex: 0,
+        }} />
+
+        {/* Blob bottom-left */}
+        <div style={{
+          position: 'absolute', bottom: '-20%', left: '-10%',
+          width: 600, height: 600, borderRadius: '50%',
+          background: 'rgba(99,102,241,0.10)',
+          filter: 'blur(100px)',
+          pointerEvents: 'none', zIndex: 0,
+        }} />
+
         <div style={{ position: 'relative', zIndex: 1 }}>
           <motion.div initial={{ opacity: 0, y: 22 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={trans()}>
             <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(26px, 3.5vw, 46px)', fontWeight: 800, color: '#F1F5F9', margin: '0 0 18px', lineHeight: 1.15 }}>
