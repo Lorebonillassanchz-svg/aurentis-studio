@@ -240,28 +240,22 @@ export default function PortafolioPage() {
           ))}
         </div>
 
-        {/* Note */}
-        <div style={{ maxWidth: 700, margin: '40px auto 0', paddingTop: 28, borderTop: '1px solid rgba(255,255,255,0.06)', textAlign: 'center' }}>
-          <p style={{ color: '#4B5A72', fontSize: 12, fontStyle: 'italic', fontFamily: 'var(--font-body)', margin: 0, lineHeight: 1.65 }}>
-            Los proyectos mostrados son ejercicios de diseño con marcas ficticias creados para ilustrar dirección visual y enfoque estratégico. Los proyectos reales se añadirán a medida que se completen.
-          </p>
-        </div>
 
       </section>
 
       {/* ── CTA ──────────────────────────────────── */}
       <section style={{ background: '#0F172A', padding: '100px 5%', textAlign: 'center', borderTop: '1px solid rgba(255,255,255,0.07)' }}>
-        <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(22px, 2.6vw, 36px)', fontWeight: 800, color: '#F1F5F9', margin: '0 auto 16px', maxWidth: 500, lineHeight: 1.2 }}>
-          ¿Quieres ser el primero?
+        <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(22px, 2.6vw, 36px)', fontWeight: 800, color: '#F1F5F9', margin: '0 auto 16px', maxWidth: 560, lineHeight: 1.2 }}>
+          ¿Tu proyecto podría ser el siguiente?
         </h2>
-        <p style={{ color: '#94A3B8', fontSize: 15.5, lineHeight: 1.7, fontFamily: 'var(--font-body)', fontWeight: 300, maxWidth: 400, margin: '0 auto 36px' }}>
-          Si tu proyecto resulta ser un buen caso de uso, podría aparecer aquí.
+        <p style={{ color: '#94A3B8', fontSize: 15.5, lineHeight: 1.7, fontFamily: 'var(--font-body)', fontWeight: 300, maxWidth: 480, margin: '0 auto 36px' }}>
+          Trabajamos con negocios que quieren resultados reales. Si tienes un proyecto entre manos, cuéntanos y te decimos si podemos ayudarte.
         </p>
         <Link
           href="/contacto"
           style={{ display: 'inline-block', background: '#2563FF', color: '#fff', fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 15, padding: '14px 32px', borderRadius: 9, textDecoration: 'none', boxShadow: '0 0 28px rgba(37,99,255,0.3)' }}
         >
-          Hablemos →
+          Hablemos
         </Link>
       </section>
     </>
