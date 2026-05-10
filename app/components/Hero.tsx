@@ -153,13 +153,11 @@ export default function Hero() {
             padding-bottom: 60px;
             min-height: auto;
           }
-          .hero-visual { height: 300px; }
-          .hero-s2, .hero-s3, .hero-s5 { display: none; }
-          .hero-device { animation: none; transform: translate(-50%, -50%); }
+          .hero-visual { display: none; }
+          .hero-chips  { position: relative; z-index: 10; }
         }
         @media (max-width: 420px) {
-          .hero-visual { height: 240px; }
-          .hero-s1, .hero-s4 { display: none; }
+          .hero-visual { display: none; }
         }
       `}</style>
 
@@ -217,7 +215,7 @@ export default function Hero() {
           </div>
 
           {/* Chips */}
-          <div style={{ display:'flex', gap:8, flexWrap:'wrap', animation:'fadeUp 0.55s ease 0.25s both' }}>
+          <div className="hero-chips" style={{ display:'flex', gap:8, flexWrap:'wrap', animation:'fadeUp 0.55s ease 0.25s both' }}>
             <span style={{ display:'inline-flex', alignItems:'center', gap:6, background:'rgba(37,99,255,0.07)', border:'1px solid rgba(37,99,255,0.2)', color:'#93C5FD', borderRadius:999, fontSize:12, fontWeight:500, padding:'6px 13px', fontFamily:'var(--font-body)' }}>
               <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><rect x="1" y="1" width="9" height="9" rx="1.5" stroke="#93C5FD" strokeWidth="1.3"/><line x1="1" y1="3.5" x2="10" y2="3.5" stroke="#93C5FD" strokeWidth="1.1"/></svg>
               Estrategia digital
