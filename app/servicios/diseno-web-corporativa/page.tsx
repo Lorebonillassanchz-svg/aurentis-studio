@@ -102,6 +102,24 @@ export default function DisenoWebCorporativaPage() {
         }
       `}</style>
 
+      {/* ── BREADCRUMB ───────────────────────────────────── */}
+      <div style={{ background: '#0B0F1A', padding: '12px 5%' }}>
+        <div style={{ maxWidth: 860, margin: '0 auto', display: 'flex', alignItems: 'center', gap: 8 }}>
+          <Link
+            href="/servicios"
+            style={{ fontFamily: 'var(--font-body)', fontSize: 14, fontWeight: 400, color: '#64748B', textDecoration: 'none', transition: 'color 0.2s' }}
+            onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.color = '#2563FF' }}
+            onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.color = '#64748B' }}
+          >
+            Servicios
+          </Link>
+          <span style={{ fontFamily: 'var(--font-body)', fontSize: 14, color: '#334155', userSelect: 'none' }}>→</span>
+          <span style={{ fontFamily: 'var(--font-body)', fontSize: 14, fontWeight: 400, color: '#94A3B8' }}>
+            Diseño Web Profesional
+          </span>
+        </div>
+      </div>
+
       {/* ── S1: HERO ─────────────────────────────────────── */}
       <section style={{ background: '#0B0F1A', padding: '140px 5% 100px', position: 'relative', overflow: 'hidden' }}>
 
