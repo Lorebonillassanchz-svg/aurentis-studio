@@ -23,6 +23,9 @@ const dmSans = DM_Sans({
 export const metadata: Metadata = {
   title: 'Aurentis Studio — Presencia digital estratégica',
   description: 'Diseño web estratégico, landing pages y sistemas de captación para negocios que quieren verse profesionales y convertir mejor.',
+  other: {
+    'theme-color': '#0B0F1A',
+  },
 }
 
 export default function RootLayout({
@@ -31,8 +34,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="es" className={`${outfit.variable} ${dmSans.variable}`}>
-      <body className="antialiased">
+    <html lang="es" className={`${outfit.variable} ${dmSans.variable}`} style={{ backgroundColor: '#0B0F1A' }}>
+      <body className="antialiased" style={{ backgroundColor: '#0B0F1A' }}>
         <ScrollRevealInit />
         <Navbar />
         {children}
