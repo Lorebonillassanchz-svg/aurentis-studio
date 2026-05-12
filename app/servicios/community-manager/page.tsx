@@ -238,7 +238,7 @@ export default function CommunityManagerPage() {
         {/* Network SVG — desktop only (cm-network-svg hidden on mobile via CSS) */}
         <svg
           className="cm-network-svg"
-          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', opacity: 0.35, pointerEvents: 'none', zIndex: 0 }}
+          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', opacity: 0.12, pointerEvents: 'none', zIndex: 0 }}
           viewBox="0 0 100 100"
           preserveAspectRatio="none"
           aria-hidden="true"
@@ -246,19 +246,19 @@ export default function CommunityManagerPage() {
           <defs>
             {/* Drop-shadow filters per network */}
             <filter id="glowIG" x="-50%" y="-50%" width="200%" height="200%">
-              <feDropShadow dx="0" dy="0" stdDeviation="0.8" floodColor="#E1306C" floodOpacity="0.9"/>
+              <feDropShadow dx="0" dy="0" stdDeviation="0.4" floodColor="#E1306C" floodOpacity="0.9"/>
             </filter>
             <filter id="glowTK" x="-50%" y="-50%" width="200%" height="200%">
-              <feDropShadow dx="0" dy="0" stdDeviation="0.8" floodColor="#ffffff" floodOpacity="0.7"/>
+              <feDropShadow dx="0" dy="0" stdDeviation="0.4" floodColor="#ffffff" floodOpacity="0.7"/>
             </filter>
             <filter id="glowFB" x="-50%" y="-50%" width="200%" height="200%">
-              <feDropShadow dx="0" dy="0" stdDeviation="0.8" floodColor="#1877F2" floodOpacity="0.9"/>
+              <feDropShadow dx="0" dy="0" stdDeviation="0.4" floodColor="#1877F2" floodOpacity="0.9"/>
             </filter>
             <filter id="glowLI" x="-50%" y="-50%" width="200%" height="200%">
-              <feDropShadow dx="0" dy="0" stdDeviation="0.8" floodColor="#0A66C2" floodOpacity="0.9"/>
+              <feDropShadow dx="0" dy="0" stdDeviation="0.4" floodColor="#0A66C2" floodOpacity="0.9"/>
             </filter>
             <filter id="glowYT" x="-50%" y="-50%" width="200%" height="200%">
-              <feDropShadow dx="0" dy="0" stdDeviation="0.8" floodColor="#FF0000" floodOpacity="0.9"/>
+              <feDropShadow dx="0" dy="0" stdDeviation="0.4" floodColor="#FF0000" floodOpacity="0.9"/>
             </filter>
           </defs>
 
@@ -267,7 +267,7 @@ export default function CommunityManagerPage() {
           {/* Instagram (85,20) → center */}
           <path
             d="M 85,20 C 75,25 65,35 50,50"
-            fill="none" stroke="#E1306C" strokeWidth="1" opacity="0.6"
+            fill="none" stroke="#E1306C" strokeWidth="0.5" opacity="0.6"
             filter="url(#glowIG)"
             strokeDasharray="1000"
             style={{ animation: 'flowLine 5s ease-in-out infinite', animationDelay: '0s' }}
@@ -275,7 +275,7 @@ export default function CommunityManagerPage() {
           {/* Instagram branch to LinkedIn */}
           <path
             d="M 85,20 C 80,15 72,12 60,10"
-            fill="none" stroke="#E1306C" strokeWidth="0.6" opacity="0.35"
+            fill="none" stroke="#E1306C" strokeWidth="0.5" opacity="0.35"
             filter="url(#glowIG)"
             strokeDasharray="1000"
             style={{ animation: 'flowLine 7s ease-in-out infinite', animationDelay: '1.2s' }}
@@ -284,7 +284,7 @@ export default function CommunityManagerPage() {
           {/* TikTok (95,45) → center */}
           <path
             d="M 95,45 C 82,44 68,47 50,50"
-            fill="none" stroke="#ffffff" strokeWidth="1" opacity="0.4"
+            fill="none" stroke="#ffffff" strokeWidth="0.5" opacity="0.4"
             filter="url(#glowTK)"
             strokeDasharray="1000"
             style={{ animation: 'flowLine 6s ease-in-out infinite', animationDelay: '0.8s' }}
@@ -292,7 +292,7 @@ export default function CommunityManagerPage() {
           {/* TikTok branch to YouTube */}
           <path
             d="M 95,45 C 90,52 82,56 70,60"
-            fill="none" stroke="#ffffff" strokeWidth="0.6" opacity="0.25"
+            fill="none" stroke="#ffffff" strokeWidth="0.5" opacity="0.25"
             filter="url(#glowTK)"
             strokeDasharray="1000"
             style={{ animation: 'flowLine 8s ease-in-out infinite', animationDelay: '3s' }}
@@ -301,7 +301,7 @@ export default function CommunityManagerPage() {
           {/* Facebook (80,80) → center */}
           <path
             d="M 80,80 C 72,72 62,62 50,50"
-            fill="none" stroke="#1877F2" strokeWidth="1" opacity="0.6"
+            fill="none" stroke="#1877F2" strokeWidth="0.5" opacity="0.6"
             filter="url(#glowFB)"
             strokeDasharray="1000"
             style={{ animation: 'flowLine 4.5s ease-in-out infinite', animationDelay: '1.5s' }}
@@ -309,7 +309,7 @@ export default function CommunityManagerPage() {
           {/* Facebook branch to YouTube */}
           <path
             d="M 80,80 C 76,72 73,66 70,60"
-            fill="none" stroke="#1877F2" strokeWidth="0.6" opacity="0.35"
+            fill="none" stroke="#1877F2" strokeWidth="0.5" opacity="0.35"
             filter="url(#glowFB)"
             strokeDasharray="1000"
             style={{ animation: 'flowLine 6.5s ease-in-out infinite', animationDelay: '0.4s' }}
@@ -318,7 +318,7 @@ export default function CommunityManagerPage() {
           {/* LinkedIn (60,10) → center */}
           <path
             d="M 60,10 C 58,22 55,36 50,50"
-            fill="none" stroke="#0A66C2" strokeWidth="1" opacity="0.6"
+            fill="none" stroke="#0A66C2" strokeWidth="0.5" opacity="0.6"
             filter="url(#glowLI)"
             strokeDasharray="1000"
             style={{ animation: 'flowLine 7s ease-in-out infinite', animationDelay: '2.2s' }}
@@ -327,7 +327,7 @@ export default function CommunityManagerPage() {
           {/* YouTube (70,60) → center */}
           <path
             d="M 70,60 C 64,57 58,54 50,50"
-            fill="none" stroke="#FF0000" strokeWidth="1" opacity="0.6"
+            fill="none" stroke="#FF0000" strokeWidth="0.5" opacity="0.6"
             filter="url(#glowYT)"
             strokeDasharray="1000"
             style={{ animation: 'flowLine 5.5s ease-in-out infinite', animationDelay: '0.6s' }}
@@ -335,7 +335,7 @@ export default function CommunityManagerPage() {
           {/* YouTube branch to Instagram */}
           <path
             d="M 70,60 C 74,45 78,32 85,20"
-            fill="none" stroke="#FF0000" strokeWidth="0.6" opacity="0.3"
+            fill="none" stroke="#FF0000" strokeWidth="0.5" opacity="0.3"
             filter="url(#glowYT)"
             strokeDasharray="1000"
             style={{ animation: 'flowLine 9s ease-in-out infinite', animationDelay: '4s' }}
@@ -346,56 +346,56 @@ export default function CommunityManagerPage() {
 
           {/* Instagram at (85,20) */}
           <g>
-            <rect x="80.5" y="15.5" width="9" height="9" rx="2" fill="#E1306C" opacity="0.12"/>
-            <circle cx="85" cy="20" r="4.5" fill="#E1306C" opacity="0.15" filter="url(#glowIG)">
+            <rect x="80.5" y="15.5" width="9" height="9" rx="2" fill="#E1306C" opacity="0.06"/>
+            <circle cx="85" cy="20" r="4.5" fill="#E1306C" opacity="0.06" filter="url(#glowIG)">
               <animate attributeName="opacity" values="0.15;0.28;0.15" dur="2s" repeatCount="indefinite" begin="0s"/>
             </circle>
             <g transform="translate(85 20) scale(0.375) translate(-12 -12)">
-              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" fill="white" opacity="0.9"/>
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" fill="white" opacity="0.15"/>
             </g>
           </g>
 
           {/* TikTok at (95,45) */}
           <g>
-            <rect x="90.5" y="40.5" width="9" height="9" rx="2" fill="#ffffff" opacity="0.08"/>
-            <circle cx="95" cy="45" r="4.5" fill="#ffffff" opacity="0.12" filter="url(#glowTK)">
+            <rect x="90.5" y="40.5" width="9" height="9" rx="2" fill="#ffffff" opacity="0.06"/>
+            <circle cx="95" cy="45" r="4.5" fill="#ffffff" opacity="0.06" filter="url(#glowTK)">
               <animate attributeName="opacity" values="0.12;0.22;0.12" dur="2.4s" repeatCount="indefinite" begin="0.5s"/>
             </circle>
             <g transform="translate(95 45) scale(0.375) translate(-12 -12)">
-              <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.15 8.15 0 004.77 1.52V6.76a4.85 4.85 0 01-1-.07z" fill="white" opacity="0.9"/>
+              <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.15 8.15 0 004.77 1.52V6.76a4.85 4.85 0 01-1-.07z" fill="white" opacity="0.15"/>
             </g>
           </g>
 
           {/* Facebook at (80,80) */}
           <g>
-            <rect x="75.5" y="75.5" width="9" height="9" rx="2" fill="#1877F2" opacity="0.12"/>
-            <circle cx="80" cy="80" r="4.5" fill="#1877F2" opacity="0.15" filter="url(#glowFB)">
+            <rect x="75.5" y="75.5" width="9" height="9" rx="2" fill="#1877F2" opacity="0.06"/>
+            <circle cx="80" cy="80" r="4.5" fill="#1877F2" opacity="0.06" filter="url(#glowFB)">
               <animate attributeName="opacity" values="0.15;0.28;0.15" dur="1.8s" repeatCount="indefinite" begin="1s"/>
             </circle>
             <g transform="translate(80 80) scale(0.375) translate(-12 -12)">
-              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" fill="white" opacity="0.9"/>
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" fill="white" opacity="0.15"/>
             </g>
           </g>
 
           {/* LinkedIn at (60,10) */}
           <g>
-            <rect x="55.5" y="5.5" width="9" height="9" rx="2" fill="#0A66C2" opacity="0.12"/>
-            <circle cx="60" cy="10" r="4.5" fill="#0A66C2" opacity="0.15" filter="url(#glowLI)">
+            <rect x="55.5" y="5.5" width="9" height="9" rx="2" fill="#0A66C2" opacity="0.06"/>
+            <circle cx="60" cy="10" r="4.5" fill="#0A66C2" opacity="0.06" filter="url(#glowLI)">
               <animate attributeName="opacity" values="0.15;0.28;0.15" dur="2.2s" repeatCount="indefinite" begin="0.3s"/>
             </circle>
             <g transform="translate(60 10) scale(0.375) translate(-12 -12)">
-              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" fill="white" opacity="0.9"/>
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" fill="white" opacity="0.15"/>
             </g>
           </g>
 
           {/* YouTube at (70,60) */}
           <g>
-            <rect x="65.5" y="55.5" width="9" height="9" rx="2" fill="#FF0000" opacity="0.12"/>
-            <circle cx="70" cy="60" r="4.5" fill="#FF0000" opacity="0.15" filter="url(#glowYT)">
+            <rect x="65.5" y="55.5" width="9" height="9" rx="2" fill="#FF0000" opacity="0.06"/>
+            <circle cx="70" cy="60" r="4.5" fill="#FF0000" opacity="0.06" filter="url(#glowYT)">
               <animate attributeName="opacity" values="0.15;0.28;0.15" dur="2s" repeatCount="indefinite" begin="0.8s"/>
             </circle>
             <g transform="translate(70 60) scale(0.375) translate(-12 -12)">
-              <path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z" fill="white" opacity="0.9"/>
+              <path d="M23.495 6.205a3.007 3.007 0 00-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 00.527 6.205a31.247 31.247 0 00-.522 5.805 31.247 31.247 0 00.522 5.783 3.007 3.007 0 002.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 002.088-2.088 31.247 31.247 0 00.5-5.783 31.247 31.247 0 00-.5-5.805zM9.609 15.601V8.408l6.264 3.602z" fill="white" opacity="0.15"/>
             </g>
           </g>
 
@@ -413,7 +413,7 @@ export default function CommunityManagerPage() {
           </Fade>
 
           {/* Title — stagger words on desktop, plain on mobile */}
-          <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(30px, 4.5vw, 58px)', fontWeight: 800, color: '#F1F5F9', margin: '0 0 24px', lineHeight: 1.1 }}>
+          <h1 style={{ fontFamily: 'var(--font-display)', fontSize: isMobile ? '2.2rem' : 'clamp(30px, 4.5vw, 58px)', fontWeight: 800, color: '#F1F5F9', margin: '0 0 24px', lineHeight: 1.15, wordBreak: 'break-word', overflowWrap: 'break-word', width: '100%' }}>
             {isMobile
               ? TITLE_WORDS.map((word, i) => {
                   const isLast4 = i >= TITLE_WORDS.length - 4
