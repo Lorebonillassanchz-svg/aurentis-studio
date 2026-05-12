@@ -1,269 +1,484 @@
+'use client'
+
 import React from 'react'
-import Image from 'next/image'
 import Link from 'next/link'
-import type { Metadata } from 'next'
+import Image from 'next/image'
+import { motion } from 'framer-motion'
+import { Check } from 'lucide-react'
 
-export const metadata: Metadata = {
-  title: 'Diseño de Tiendas Online WooCommerce y PrestaShop — Aurentis Studio',
-  description: 'Creamos tu tienda online profesional en WooCommerce o PrestaShop. Diseño optimizado para vender, SEO incluido y formación para que la gestiones tú solo.',
+/* ── Shared styles ───────────────────────────────────────── */
+const gradText: React.CSSProperties = {
+  background: 'linear-gradient(100deg, #3B82F6, #818CF8)',
+  WebkitBackgroundClip: 'text',
+  WebkitTextFillColor: 'transparent',
+  backgroundClip: 'text',
 }
+const labelStyle: React.CSSProperties = {
+  display: 'inline-block',
+  fontFamily: 'var(--font-display)',
+  fontSize: 11, fontWeight: 700,
+  letterSpacing: '0.13em',
+  textTransform: 'uppercase',
+  color: '#3B82F6',
+  marginBottom: 18,
+}
+const trans = (delay = 0) => ({ duration: 0.6, delay })
 
-const ACCENT = '#2563FF'
-const ACCENT_RGB = '37,99,255'
+/* ── Data ────────────────────────────────────────────────── */
+const TITLE_WORDS = 'Tu tienda online debería vender mientras duermes. ¿La tuya lo hace?'.split(' ')
 
-function BackBtn() {
+const PLATFORMS = [
+  {
+    name: 'WooCommerce',
+    color: '#7F54B3',
+    colorBg: 'rgba(127,84,179,0.12)',
+    colorBorder: 'rgba(127,84,179,0.3)',
+    logo: (
+      <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
+        <rect width="44" height="44" rx="10" fill="#7F54B3"/>
+        <path d="M7 27.5c-.8 0-1.3-.8-1.1-1.6L9.5 12c.2-.9 1-1.5 1.9-1.5s1.6.6 1.8 1.5l2.2 8.8 2.5-8.8c.3-.9 1.1-1.5 2-1.5s1.7.6 1.9 1.5l2.5 8.8 2.2-8.8c.2-.9 1-.5 1.9-1.5.9 0 1.7.6 1.8 1.5l3.6 13.9c.2.8-.3 1.6-1.1 1.6-.6 0-1.2-.4-1.4-1l-2.7-10.4-2.7 10.4c-.3.6-.9 1-1.5 1-.7 0-1.3-.4-1.5-1L22 16.6l-2.7 10.4c-.2.6-.8 1-1.5 1-.6 0-1.2-.4-1.4-1L13.7 16.6 11 27c-.2.6-.8 1-1.5 1h-.5z" fill="white"/>
+      </svg>
+    ),
+  },
+  {
+    name: 'Shopify',
+    color: '#96BF48',
+    colorBg: 'rgba(150,191,72,0.12)',
+    colorBorder: 'rgba(150,191,72,0.3)',
+    logo: (
+      <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
+        <rect width="44" height="44" rx="10" fill="#96BF48"/>
+        <path d="M30.5 11.8c0-.2-.1-.3-.3-.3-.1 0-2.1-.1-2.1-.1s-1.4-1.4-1.6-1.5c-.1-.1-.4-.1-.5 0l-.7.2c-.4-1.2-1.1-2.3-2.4-2.3h-.1c-.3-.5-.8-.7-1.2-.7-3 0-4.5 3.8-4.9 5.7l-2.1.6c-.6.2-.6.2-.7.8L12.5 32l13.6 2.5 7.4-1.6-3-21.1zm-6.2-1.5c-.9.3-2 .6-3 .9.3-1.2.9-2.4 1.7-3.2.3.6.9 1.8 1.3 2.3zm-2.5-3.1c.2 0 .3.1.5.2-.9.9-1.6 2.3-2 3.8l-2.5.8c.5-1.7 1.8-4.8 4-4.8zm1.2 12.2c.1.5-.1 1-.5 1.2-.4.2-.8 0-1.1-.3-.4-.4-.6-1-.6-1.5-.9.3-1.8.5-2.7.8 0 .1 0 .2.1.3.5 1.8 2.1 2.8 3.8 2.3 1.5-.5 2.3-2.1 1.9-3.8-.1-.3-.5-.8-.9-1l1-.3c-.1.8 0 1.6.4 2.1.3.2.4.2.6.2z" fill="white"/>
+        <path d="M28.1 11.5c-.1 0-1.5-.2-1.5-.2l-.8 5 .1.1L30 15l.5-3.2c-.1-.2-.3-.3-.4-.3z" fill="white"/>
+      </svg>
+    ),
+  },
+  {
+    name: 'PrestaShop',
+    color: '#DF0067',
+    colorBg: 'rgba(223,0,103,0.12)',
+    colorBorder: 'rgba(223,0,103,0.3)',
+    logo: (
+      <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
+        <rect width="44" height="44" rx="10" fill="#DF0067"/>
+        <path d="M22 8C14.3 8 8 14.3 8 22s6.3 14 14 14 14-6.3 14-14S29.7 8 22 8zm0 5.5c2.5 0 4.5.8 6 2.3 1.4 1.4 2.1 3.2 2.1 5.2 0 2.1-.8 3.9-2.3 5.3-1.5 1.4-3.5 2.1-5.8 2.1h-3.5V36h-3V13.5H22zm-3.5 12h3.3c1.5 0 2.7-.4 3.5-1.2.8-.8 1.3-1.9 1.3-3.2 0-1.3-.4-2.3-1.2-3.1-.8-.8-2-1.1-3.5-1.1h-3.4v8.6z" fill="white"/>
+      </svg>
+    ),
+  },
+]
+
+const PROBLEMS = [
+  {
+    title: 'Tengo tienda online pero apenas recibo pedidos',
+    desc: 'Tener una tienda no garantiza ventas. Si no está bien estructurada, con fichas de producto claras y un proceso de compra fluido, el cliente abandona antes de pagar.',
+  },
+  {
+    title: 'Mi tienda se ve amateur comparada con la competencia',
+    desc: 'El diseño genera confianza. Una tienda que parece poco profesional hace que el cliente dude antes de introducir su tarjeta. La primera impresión lo es todo.',
+  },
+  {
+    title: 'El proceso de compra es complicado y la gente lo abandona',
+    desc: 'El 70% de los carritos se abandonan. Un checkout largo, confuso o que no funciona bien en móvil cuesta ventas reales cada día.',
+  },
+  {
+    title: 'No sé si mi tienda aparece en Google cuando buscan mis productos',
+    desc: 'Una tienda sin SEO es invisible. Si Google no indexa tus productos correctamente, solo venden los que ya te conocen.',
+  },
+]
+
+const INCLUDES = [
+  'Diseño personalizado adaptado a tu marca y sector',
+  'Catálogo de productos configurado y listo para vender',
+  'Pasarela de pago integrada y probada',
+  '100% adaptada a móvil — donde ocurre el 70% de las compras',
+  'SEO técnico para que tus productos aparezcan en Google',
+  'Integración con métodos de envío y gestión de stock',
+  'Te enseño a gestionar tu tienda sin depender de nadie',
+]
+
+/* ── CTA Button ──────────────────────────────────────────── */
+function CTAButton() {
   return (
     <Link
-      href="/servicios"
+      href="/contacto"
       style={{
-        display: 'inline-flex', alignItems: 'center', gap: 6,
-        background: 'rgba(0,0,0,0.35)', backdropFilter: 'blur(8px)',
-        WebkitBackdropFilter: 'blur(8px)',
-        border: '1px solid rgba(255,255,255,0.1)',
-        color: '#94A3B8', fontSize: 12, padding: '7px 14px',
-        borderRadius: 999, marginBottom: 20,
-        textDecoration: 'none', fontFamily: 'var(--font-body)',
+        display: 'inline-block',
+        background: '#2563FF',
+        color: '#fff',
+        fontFamily: 'var(--font-display)',
+        fontWeight: 600,
+        fontSize: 15,
+        padding: '14px 32px',
+        borderRadius: 8,
+        textDecoration: 'none',
+        boxShadow: '0 0 28px rgba(37,99,255,0.35)',
+        transition: 'background 0.2s, box-shadow 0.2s',
+      }}
+      onMouseEnter={e => {
+        const el = e.currentTarget as HTMLAnchorElement
+        el.style.background = '#1d4fd8'
+        el.style.boxShadow  = '0 0 36px rgba(37,99,255,0.5)'
+      }}
+      onMouseLeave={e => {
+        const el = e.currentTarget as HTMLAnchorElement
+        el.style.background = '#2563FF'
+        el.style.boxShadow  = '0 0 28px rgba(37,99,255,0.35)'
       }}
     >
-      ← Servicios
+      Quiero mi tienda online
     </Link>
   )
 }
 
-function Check() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{ flexShrink: 0, marginTop: 2 }}>
-      <circle cx="8" cy="8" r="7" stroke={`rgba(${ACCENT_RGB},0.4)`} strokeWidth="1"/>
-      <path d="M5 8l2 2 4-4" stroke={ACCENT} strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
-    </svg>
-  )
-}
-
-const problems = [
-  { title: 'Tienes visitas pero no vendes', text: 'Tu tienda recibe tráfico pero no convierte. Pasa en el 80% de las tiendas online mal estructuradas. La solución casi nunca es más publicidad — es rediseñar cómo está construida.' },
-  { title: 'Tu tienda se ve amateur', text: 'Los clientes deciden si comprar en los primeros 3 segundos. Una tienda online anticuada o poco profesional pierde ventas antes de que el cliente lea el precio.' },
-  { title: 'No apareces cuando buscan lo que vendes', text: 'Sin SEO técnico bien aplicado, tu tienda online es invisible en Google. El tráfico orgánico tarda más que los anuncios, pero no para cuando dejas de pagar.' },
-  { title: 'Dependes de un técnico para todo', text: 'Si cambiar un precio o subir un producto requiere llamar a alguien, tu tienda está mal construida. Te la entregamos lista para gestionarla tú solo desde el día 1.' },
-]
-
-const includes = [
-  'Diseño personalizado coherente con tu marca y tu sector',
-  'Estructura de categorías y navegación diseñada para que comprar sea fácil',
-  'Ficha de producto optimizada para convertir: imágenes, textos y llamada a la acción',
-  'Pasarela de pago integrada: Stripe, PayPal o transferencia bancaria',
-  'SEO técnico aplicado de base: URLs, metadatos, velocidad y estructura',
-  'Formación incluida — gestiona tu tienda sin depender de nadie',
-]
-
-const process = [
-  { num: '01', title: 'Analizamos tu negocio y tu competencia', text: 'Antes de diseñar nada, entendemos qué vendes, quién te compra y por qué te eligen (o no) frente a quien ya vende online en tu sector.' },
-  { num: '02', title: 'Planificamos la estructura de la tienda', text: 'Categorías, flujo de compra y wireframes. El diseño sigue a la estrategia de ventas, no al revés.' },
-  { num: '03', title: 'Desarrollamos, configuramos y probamos', text: 'Tienda completa: productos, pagos, envíos, SEO técnico y pruebas de usabilidad antes de publicar nada.' },
-  { num: '04', title: 'Publicamos y te formamos', text: 'Entrega con sesión de formación en directo para que puedas gestionar tu tienda online con total autonomía desde el primer día.' },
-]
-
-export default function TiendasOnlinePage() {
+/* ── Page ────────────────────────────────────────────────── */
+export default function DisenoTiendasOnlinePage() {
   return (
     <>
       <style>{`
-        .dto-problems { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; max-width: 900px; margin: 0 auto; }
-        .dto-split { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; max-width: 1100px; margin: 0 auto; align-items: center; }
-        .dto-platforms { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 900px; margin: 0 auto; }
-        .dto-process { display: flex; flex-direction: column; gap: 0; max-width: 700px; margin: 0 auto; }
+        .dto-problems { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .dto-includes { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 40px; }
+        .dto-split    { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+        .dto-platforms { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+        .dto-platform-card {
+          display: flex; flex-direction: column; align-items: center; gap: 12;
+          background: rgba(255,255,255,0.05);
+          border: 1px solid rgba(255,255,255,0.08);
+          border-radius: 12px; padding: 20px 32px;
+          cursor: default; transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+          min-width: 160px;
+        }
+        .dto-platform-card:hover {
+          transform: scale(1.05);
+          border-color: rgba(37,99,255,0.35);
+          box-shadow: 0 8px 28px rgba(37,99,255,0.12);
+        }
         @media (max-width: 768px) {
-          .dto-problems { grid-template-columns: 1fr !important; }
-          .dto-split { grid-template-columns: 1fr !important; }
-          .dto-platforms { grid-template-columns: 1fr !important; }
+          .dto-problems  { grid-template-columns: 1fr; }
+          .dto-includes  { grid-template-columns: 1fr; }
+          .dto-split     { grid-template-columns: 1fr; gap: 36px; }
+          .dto-platforms { gap: 12px; }
+          .dto-platform-card { padding: 16px 24px; min-width: 130px; }
         }
       `}</style>
 
-      {/* HERO */}
-      <section style={{ position: 'relative', minHeight: 480, overflow: 'hidden', display: 'flex', alignItems: 'flex-end' }}>
-        <Image
-          src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=1600&q=80&fit=crop"
-          alt="Diseño de tiendas online"
-          fill priority sizes="100vw"
-          style={{ objectFit: 'cover' }}
-        />
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, rgba(7,9,15,0.97) 0%, rgba(7,9,15,0.65) 55%, rgba(7,9,15,0.3) 100%)' }} />
-        <div style={{ position: 'absolute', inset: 0, background: `rgba(${ACCENT_RGB},0.08)` }} />
+      {/* ── BREADCRUMB ───────────────────────────────────── */}
+      <div style={{ background: '#0B0F1A', padding: '16px 24px', paddingTop: 86, position: 'relative', zIndex: 1 }}>
+        <Link
+          href="/servicios"
+          style={{ fontFamily: 'var(--font-body)', fontSize: 14, fontWeight: 400, color: '#818CF8', textDecoration: 'none', transition: 'color 0.2s', display: 'inline-block' }}
+          onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.color = '#2563FF' }}
+          onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.color = '#818CF8' }}
+        >
+          ← Volver a Servicios
+        </Link>
+      </div>
 
-        <div style={{ position: 'relative', zIndex: 2, padding: '48px 5%', maxWidth: 700 }}>
-          <BackBtn />
-          <p style={{ fontFamily: 'var(--font-display)', fontSize: 12, fontWeight: 700, color: ACCENT, letterSpacing: '0.1em', textTransform: 'uppercase', margin: '0 0 10px' }}>
-            Diseño de tiendas online
-          </p>
-          <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(28px,3.5vw,48px)', fontWeight: 800, color: '#F1F5F9', margin: '0 0 16px', lineHeight: 1.15 }}>
-            Tiendas online que venden — no solo que existen
+      {/* ── S1: HERO ─────────────────────────────────────── */}
+      <section style={{ background: '#0B0F1A', padding: '60px 5% 100px', position: 'relative', overflow: 'hidden' }}>
+
+        {/* Dot grid */}
+        <div style={{
+          position: 'absolute', inset: 0, zIndex: 0, pointerEvents: 'none',
+          backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px)',
+          backgroundSize: '28px 28px',
+        }} />
+
+        {/* Radial gradient overlay */}
+        <div style={{
+          position: 'absolute', inset: 0, zIndex: 0, pointerEvents: 'none',
+          background: 'radial-gradient(ellipse at 70% 50%, rgba(37,99,255,0.15) 0%, transparent 60%)',
+        }} />
+
+        {/* Blob top-right */}
+        <div style={{
+          position: 'absolute', top: '-20%', right: '-12%',
+          width: 750, height: 750, borderRadius: '50%',
+          background: 'rgba(37,99,255,0.12)',
+          filter: 'blur(110px)',
+          pointerEvents: 'none', zIndex: 0,
+        }} />
+
+        <div style={{ maxWidth: 860, margin: '0 auto', position: 'relative', zIndex: 1 }}>
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={trans(0)}>
+            <div style={{ width: 40, height: 2, background: '#2563FF', borderRadius: 2, marginBottom: 14 }} />
+            <span style={labelStyle}>Tienda Online</span>
+          </motion.div>
+
+          {/* Word-by-word stagger title */}
+          <h1 style={{
+            fontFamily: 'var(--font-display)',
+            fontSize: 'clamp(32px, 5vw, 62px)',
+            fontWeight: 800,
+            color: '#F1F5F9',
+            margin: '0 0 24px',
+            lineHeight: 1.08,
+          }}>
+            {TITLE_WORDS.map((word, i) => {
+              const isLast4 = i >= TITLE_WORDS.length - 4
+              return (
+                <motion.span
+                  key={i}
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.1 + i * 0.08 }}
+                  style={{
+                    display: 'inline-block',
+                    marginRight: '0.28em',
+                    ...(isLast4 ? gradText : {}),
+                  }}
+                >
+                  {word}
+                </motion.span>
+              )
+            })}
           </h1>
-          <p style={{ color: '#94A3B8', fontSize: 16, lineHeight: 1.7, fontFamily: 'var(--font-body)', fontWeight: 300, maxWidth: 540, margin: 0 }}>
-            Diseñamos tu tienda en WooCommerce o PrestaShop para que sea rápida, profesional y fácil de comprar. Con SEO incluido para que Google la encuentre y con formación para que la gestiones tú.
-          </p>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={trans(0.9)}
+            style={{ color: '#94A3B8', fontSize: 'clamp(15px, 1.5vw, 17px)', lineHeight: 1.78, fontFamily: 'var(--font-body)', fontWeight: 300, maxWidth: 620, margin: '0 0 36px' }}
+          >
+            Desarrollo tiendas online profesionales en WooCommerce, Shopify y PrestaShop para negocios que quieren vender por internet sin complicaciones técnicas.
+          </motion.p>
+
+          <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={trans(1.0)}>
+            <CTAButton />
+          </motion.div>
         </div>
       </section>
 
-      {/* PROBLEMAS */}
-      <section style={{ background: '#0B0F1A', padding: '80px 5%' }}>
-        <div style={{ maxWidth: 900, margin: '0 auto 40px' }}>
-          <span style={{ fontFamily: 'var(--font-display)', fontSize: 11, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase' as const, color: ACCENT, display: 'block', marginBottom: 10 }}>
-            El diagnóstico
-          </span>
-          <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(22px,2.5vw,32px)', fontWeight: 800, color: '#F1F5F9', margin: 0 }}>
-            ¿Tienes tienda online pero no funciona como debería?
-          </h2>
-        </div>
-        <div className="dto-problems">
-          {problems.map(p => (
-            <div key={p.title} style={{
-              background: '#0F172A',
-              borderLeft: `3px solid ${ACCENT}`,
-              borderRadius: '0 12px 12px 0',
-              padding: '20px 24px',
-            }}>
-              <div style={{ fontSize: 14, fontWeight: 700, color: '#F1F5F9', marginBottom: 8, fontFamily: 'var(--font-display)' }}>{p.title}</div>
-              <div style={{ fontSize: 13, color: '#64748B', lineHeight: 1.65, fontFamily: 'var(--font-body)' }}>{p.text}</div>
-            </div>
+      {/* ── S2: PLATAFORMAS ──────────────────────────────── */}
+      <section style={{ background: '#0F172A', padding: '60px 5%', borderTop: '1px solid rgba(255,255,255,0.06)', textAlign: 'center' }}>
+        <motion.p
+          initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={trans()}
+          style={{ fontFamily: 'var(--font-body)', fontSize: 12, fontWeight: 500, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#475569', marginBottom: 28 }}
+        >
+          Trabajo con las mejores plataformas
+        </motion.p>
+
+        <div className="dto-platforms">
+          {PLATFORMS.map((p, i) => (
+            <motion.div
+              key={p.name}
+              className="dto-platform-card"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={trans(i * 0.15)}
+            >
+              {p.logo}
+              <span style={{
+                fontFamily: 'var(--font-display)',
+                fontSize: 13,
+                fontWeight: 600,
+                color: p.color,
+                letterSpacing: '0.02em',
+              }}>
+                {p.name}
+              </span>
+            </motion.div>
           ))}
         </div>
       </section>
 
-      {/* QUÉ INCLUYE */}
-      <section style={{ background: '#0F172A', padding: '80px 5%', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
-        <div className="dto-split">
-          <div style={{ position: 'relative', height: 400, borderRadius: 16, overflow: 'hidden' }}>
+      {/* Gradient divider */}
+      <div style={{ height: 1, background: 'linear-gradient(90deg, transparent 0%, rgba(37,99,255,0.35) 40%, rgba(99,102,241,0.25) 60%, transparent 100%)' }} />
+
+      {/* ── S3: PROBLEMAS ────────────────────────────────── */}
+      <section style={{ background: '#0D1117', padding: '80px 5% 100px', position: 'relative', overflow: 'hidden' }}>
+
+        <div style={{
+          position: 'absolute', bottom: '-30%', left: '-15%',
+          width: 700, height: 700, borderRadius: '50%',
+          background: 'rgba(99,102,241,0.10)',
+          filter: 'blur(120px)',
+          pointerEvents: 'none', zIndex: 0,
+        }} />
+
+        <div style={{ maxWidth: 1100, margin: '0 auto', position: 'relative', zIndex: 1 }}>
+          <motion.div
+            initial={{ opacity: 0, y: 22 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={trans()}
+            style={{ marginBottom: 48 }}
+          >
+            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(22px, 3vw, 36px)', fontWeight: 800, color: '#F1F5F9', margin: '0 0 12px', lineHeight: 1.2 }}>
+              ¿Cuál de estas situaciones te suena?
+            </h2>
+            <p style={{ color: '#64748B', fontSize: 14.5, fontFamily: 'var(--font-body)', fontWeight: 300, margin: 0 }}>
+              Si te identificas con alguna, tu tienda necesita una revisión.
+            </p>
+          </motion.div>
+
+          <div className="dto-problems">
+            {PROBLEMS.map((p, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 22 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={trans(i * 0.1)}
+                style={{ background: '#0F172A', borderLeft: '3px solid #2563FF', borderRadius: '0 14px 14px 0', padding: '24px 26px' }}
+              >
+                <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 15.5, fontWeight: 700, color: '#F1F5F9', margin: '0 0 10px', lineHeight: 1.35 }}>
+                  {p.title}
+                </h3>
+                <p style={{ color: '#94A3B8', fontSize: 13.5, lineHeight: 1.72, fontFamily: 'var(--font-body)', fontWeight: 300, margin: 0 }}>
+                  {p.desc}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Gradient divider */}
+      <div style={{ height: 1, background: 'linear-gradient(90deg, transparent 0%, rgba(99,102,241,0.2) 50%, transparent 100%)' }} />
+
+      {/* ── S4: LO QUE INCLUYE ───────────────────────────── */}
+      <section style={{ background: '#0B0F1A', padding: '100px 5%', position: 'relative', overflow: 'hidden' }}>
+
+        <div style={{
+          position: 'absolute', top: '-10%', right: '-8%',
+          width: 520, height: 520, borderRadius: '50%',
+          background: 'rgba(37,99,255,0.08)',
+          filter: 'blur(90px)',
+          pointerEvents: 'none', zIndex: 0,
+        }} />
+
+        <div style={{ maxWidth: 1000, margin: '0 auto', position: 'relative', zIndex: 1 }}>
+          <motion.div
+            initial={{ opacity: 0, y: 22 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={trans()}
+            style={{ marginBottom: 48 }}
+          >
+            <span style={labelStyle}>Lo que recibes</span>
+            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(22px, 3vw, 36px)', fontWeight: 800, color: '#F1F5F9', margin: 0, lineHeight: 1.2 }}>
+              Todo lo que incluye tu tienda online
+            </h2>
+          </motion.div>
+
+          <div className="dto-includes">
+            {INCLUDES.map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={trans(i * 0.1)}
+                style={{ display: 'flex', alignItems: 'flex-start', gap: 12 }}
+              >
+                <div style={{ width: 26, height: 26, borderRadius: 8, background: 'rgba(37,99,255,0.1)', border: '1px solid rgba(37,99,255,0.25)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: 1 }}>
+                  <Check size={14} color="#2563FF" strokeWidth={2.5} />
+                </div>
+                <span style={{ color: '#CBD5E1', fontSize: 14.5, fontFamily: 'var(--font-body)', fontWeight: 400, lineHeight: 1.55 }}>
+                  {item}
+                </span>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Gradient divider */}
+      <div style={{ height: 1, background: 'linear-gradient(90deg, transparent 0%, rgba(37,99,255,0.18) 50%, transparent 100%)' }} />
+
+      {/* ── S5: PÁRRAFO DESCRIPTIVO ──────────────────────── */}
+      <section style={{ background: '#0F172A', padding: '100px 5%' }}>
+        <motion.div
+          initial={{ opacity: 0, y: 22 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={trans()}
+          style={{ maxWidth: 800, margin: '0 auto', position: 'relative' }}
+        >
+          <div style={{
+            position: 'absolute', left: 0, top: 0, bottom: 0, width: 4,
+            background: 'linear-gradient(to bottom, #2563FF, #6366F1)',
+            borderRadius: 2,
+            boxShadow: '0 0 18px 3px rgba(37,99,255,0.38)',
+          }} />
+          <div style={{ paddingLeft: 28 }}>
+            <p style={{ color: '#94A3B8', fontSize: 15.5, lineHeight: 1.88, fontFamily: 'var(--font-body)', fontWeight: 300, margin: '0 0 20px' }}>
+              El 53% de los usuarios abandona una tienda online si tarda más de 3 segundos en cargar, y Google penaliza directamente esa lentitud bajando tu posición en los resultados de búsqueda. Pero la velocidad es solo una parte del problema. Una tienda online que convierte de verdad necesita fichas de producto claras, un proceso de compra sin fricción, diseño que transmita confianza y una estructura que Google pueda leer e indexar correctamente. Sin eso, tienes un escaparate bonito que no vende. Con eso, tienes un sistema que trabaja por ti las 24 horas.
+            </p>
+            <p style={{ color: '#4B5A72', fontSize: 13, fontStyle: 'italic', fontFamily: 'var(--font-body)', margin: 0 }}>
+              Desarrollo tiendas online para negocios en Córdoba, Granada y en toda España.
+            </p>
+          </div>
+        </motion.div>
+      </section>
+
+      {/* Gradient divider */}
+      <div style={{ height: 1, background: 'linear-gradient(90deg, transparent 0%, rgba(99,102,241,0.2) 50%, transparent 100%)' }} />
+
+      {/* ── S6: SPLIT IMAGEN ─────────────────────────────── */}
+      <section style={{ background: '#0B0F1A', padding: '100px 5%' }}>
+        <div className="dto-split" style={{ maxWidth: 1100, margin: '0 auto' }}>
+          <motion.div
+            initial={{ opacity: 0, x: -24 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={trans()}
+            style={{ position: 'relative', borderRadius: 16, overflow: 'hidden', aspectRatio: '4/3' }}
+          >
             <Image
-              src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&q=80&fit=crop"
-              alt="Tienda online"
-              fill sizes="(max-width:768px) 100vw, 50vw"
+              src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=900&q=80&fit=crop"
+              alt="Tienda online profesional"
+              fill
               style={{ objectFit: 'cover' }}
             />
-            <div style={{ position: 'absolute', inset: 0, background: `linear-gradient(135deg, rgba(${ACCENT_RGB},0.2) 0%, rgba(7,9,15,0.5) 100%)` }} />
-          </div>
-          <div>
-            <span style={{ fontFamily: 'var(--font-display)', fontSize: 11, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase' as const, color: ACCENT, display: 'block', marginBottom: 10 }}>
-              Lo que recibes
-            </span>
-            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(22px,2.5vw,30px)', fontWeight: 800, color: '#F1F5F9', margin: '0 0 28px', lineHeight: 1.2 }}>
-              Qué incluye el diseño de tu tienda online
+            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(135deg, rgba(37,99,255,0.08) 0%, transparent 60%)' }} />
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 24 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={trans(0.1)}
+          >
+            <span style={labelStyle}>El proceso</span>
+            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(22px, 2.8vw, 34px)', fontWeight: 800, color: '#F1F5F9', margin: '0 0 18px', lineHeight: 1.2 }}>
+              De cero a tienda publicada y vendiendo
             </h2>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
-              {includes.map(item => (
-                <div key={item} style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
-                  <Check />
-                  <span style={{ color: '#94A3B8', fontSize: 14, lineHeight: 1.55, fontFamily: 'var(--font-body)', fontWeight: 300 }}>{item}</span>
-                </div>
-              ))}
-            </div>
-          </div>
+            <p style={{ color: '#94A3B8', fontSize: 15, lineHeight: 1.78, fontFamily: 'var(--font-body)', fontWeight: 300, margin: '0 0 28px' }}>
+              Antes de desarrollar nada estudio tu producto, tu cliente y tu competencia. Cada decisión técnica y visual tiene un objetivo claro: vender más.
+            </p>
+            <Link
+              href="/proceso"
+              style={{ color: '#60A5FA', fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 14, textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 6, transition: 'gap 0.2s' }}
+              onMouseEnter={e => { (e.currentTarget as HTMLAnchorElement).style.gap = '10px' }}
+              onMouseLeave={e => { (e.currentTarget as HTMLAnchorElement).style.gap = '6px' }}
+            >
+              Ver proceso completo →
+            </Link>
+          </motion.div>
         </div>
       </section>
 
-      {/* PLATAFORMAS */}
-      <section style={{ background: '#0B0F1A', padding: '60px 5%' }}>
-        <div style={{ maxWidth: 900, margin: '0 auto 36px' }}>
-          <span style={{ fontFamily: 'var(--font-display)', fontSize: 11, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase' as const, color: ACCENT, display: 'block', marginBottom: 10 }}>
-            Tecnología
-          </span>
-          <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(22px,2.5vw,32px)', fontWeight: 800, color: '#F1F5F9', margin: 0 }}>
-            ¿Con qué plataforma trabajamos?
-          </h2>
-        </div>
-        <div className="dto-platforms">
-          {[
-            {
-              badge: 'Más popular',
-              name: 'WooCommerce',
-              desc: 'La plataforma de ecommerce más usada del mundo, integrada en WordPress. Flexible, con miles de plugins y fácil de gestionar sin conocimientos técnicos.',
-              features: ['Gestión sencilla sin programar', 'SEO nativo potente', 'Miles de integraciones disponibles', '100% personalizable'],
-            },
-            {
-              badge: null,
-              name: 'PrestaShop',
-              desc: 'Plataforma de ecommerce puro para catálogos grandes o negocios con necesidades avanzadas de stock, envíos o múltiples idiomas y divisas.',
-              features: ['Alto rendimiento con catálogos grandes', 'Multi-idioma y multi-divisa', 'Gestión avanzada de stock', 'Módulos de logística integrados'],
-            },
-          ].map(pl => (
-            <div key={pl.name} style={{
-              background: '#0F172A',
-              border: `1px solid rgba(${ACCENT_RGB},0.2)`,
-              borderRadius: 16,
-              padding: 28,
-            }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
-                <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 20, fontWeight: 800, color: '#F1F5F9', margin: 0 }}>{pl.name}</h3>
-                {pl.badge && (
-                  <span style={{ background: `rgba(${ACCENT_RGB},0.12)`, border: `1px solid rgba(${ACCENT_RGB},0.3)`, color: '#93C5FD', borderRadius: 999, fontSize: 11, fontWeight: 600, padding: '3px 10px' }}>{pl.badge}</span>
-                )}
-              </div>
-              <p style={{ color: '#64748B', fontSize: 13.5, lineHeight: 1.65, fontFamily: 'var(--font-body)', margin: '0 0 18px' }}>{pl.desc}</p>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-                {pl.features.map(f => (
-                  <div key={f} style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
-                    <Check />
-                    <span style={{ color: '#94A3B8', fontSize: 13, fontFamily: 'var(--font-body)' }}>{f}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
+      {/* ── S7: CTA FINAL ────────────────────────────────── */}
+      <section style={{
+        background: 'linear-gradient(135deg, #0F172A 0%, #141C2E 50%, #0F172A 100%)',
+        padding: '110px 5%',
+        textAlign: 'center',
+        position: 'relative',
+        overflow: 'hidden',
+      }}>
+        <div style={{
+          position: 'absolute', top: '50%', left: '50%',
+          transform: 'translate(-50%, -50%)',
+          width: 800, height: 500, borderRadius: '50%',
+          background: 'radial-gradient(ellipse, rgba(99,102,241,0.15) 0%, rgba(37,99,255,0.10) 35%, transparent 70%)',
+          filter: 'blur(60px)',
+          pointerEvents: 'none', zIndex: 0,
+        }} />
+        <div style={{
+          position: 'absolute', bottom: '-20%', left: '-10%',
+          width: 600, height: 600, borderRadius: '50%',
+          background: 'rgba(99,102,241,0.10)',
+          filter: 'blur(100px)',
+          pointerEvents: 'none', zIndex: 0,
+        }} />
 
-      {/* PROCESO */}
-      <section style={{ background: '#0F172A', padding: '60px 5%', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
-        <div style={{ maxWidth: 700, margin: '0 auto 40px' }}>
-          <span style={{ fontFamily: 'var(--font-display)', fontSize: 11, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase' as const, color: ACCENT, display: 'block', marginBottom: 10 }}>
-            Cómo trabajamos
-          </span>
-          <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(22px,2.5vw,32px)', fontWeight: 800, color: '#F1F5F9', margin: 0 }}>
-            Del brief a la tienda publicada
-          </h2>
+        <div style={{ position: 'relative', zIndex: 1 }}>
+          <motion.div initial={{ opacity: 0, y: 22 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={trans()}>
+            <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(26px, 3.5vw, 46px)', fontWeight: 800, color: '#F1F5F9', margin: '0 0 18px', lineHeight: 1.15 }}>
+              ¿Tu tienda online está{' '}
+              <span style={gradText}>perdiendo ventas cada día?</span>
+            </h2>
+            <p style={{ color: '#94A3B8', fontSize: 16, lineHeight: 1.75, fontFamily: 'var(--font-body)', fontWeight: 300, maxWidth: 520, margin: '0 auto 40px' }}>
+              Cuéntame tu caso. Analizo tu tienda actual y te digo exactamente qué cambiaría para que empiece a vender más.
+            </p>
+            <CTAButton />
+          </motion.div>
         </div>
-        <div className="dto-process">
-          {process.map((step, i) => (
-            <div key={step.num} style={{ display: 'flex', gap: 24, paddingBottom: i < process.length - 1 ? 32 : 0 }}>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                <div style={{
-                  width: 40, height: 40, borderRadius: '50%', flexShrink: 0,
-                  background: `rgba(${ACCENT_RGB},0.1)`,
-                  border: `1px solid rgba(${ACCENT_RGB},0.3)`,
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  fontFamily: 'var(--font-display)', fontSize: 13, fontWeight: 700, color: ACCENT,
-                }}>
-                  {step.num}
-                </div>
-                {i < process.length - 1 && (
-                  <div style={{ width: 1, flex: 1, background: `rgba(${ACCENT_RGB},0.15)`, marginTop: 8 }} />
-                )}
-              </div>
-              <div style={{ paddingTop: 8, paddingBottom: i < process.length - 1 ? 16 : 0 }}>
-                <div style={{ fontFamily: 'var(--font-display)', fontSize: 16, fontWeight: 700, color: '#F1F5F9', marginBottom: 6 }}>{step.title}</div>
-                <div style={{ fontSize: 13.5, color: '#64748B', lineHeight: 1.65, fontFamily: 'var(--font-body)' }}>{step.text}</div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section style={{ background: '#0B0F1A', padding: '80px 5%', borderTop: '1px solid rgba(255,255,255,0.05)', textAlign: 'center' }}>
-        <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(24px,2.8vw,38px)', fontWeight: 800, color: '#F1F5F9', margin: '0 auto 16px', maxWidth: 600, lineHeight: 1.2 }}>
-          ¿Quieres crear o mejorar tu tienda online?
-        </h2>
-        <p style={{ color: '#94A3B8', fontSize: 16, lineHeight: 1.7, fontFamily: 'var(--font-body)', fontWeight: 300, maxWidth: 440, margin: '0 auto 36px' }}>
-          Cuéntame qué vendes y en qué punto está tu tienda ahora mismo. Te preparo una propuesta personalizada en 48 horas.
-        </p>
-        <Link
-          href="/#auditoria"
-          style={{
-            display: 'inline-block', background: ACCENT, color: '#fff',
-            fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 15,
-            padding: '14px 32px', borderRadius: 9, textDecoration: 'none',
-            boxShadow: `0 0 28px rgba(${ACCENT_RGB},0.3)`,
-          }}
-        >
-          Solicitar propuesta →
-        </Link>
       </section>
     </>
   )

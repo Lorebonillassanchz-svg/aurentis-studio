@@ -119,7 +119,14 @@ export default function PosicionamientoWebPage() {
           .pw-seo-grid { grid-template-columns: 1fr !important; }
           .pw-split { grid-template-columns: 1fr !important; }
         }
+        .bc-back { color: #818CF8; text-decoration: none; font-family: var(--font-body); font-size: 14px; font-weight: 400; display: inline-block; transition: color 0.2s; }
+        .bc-back:hover { color: #2563FF; }
       `}</style>
+
+      {/* BREADCRUMB */}
+      <div style={{ background: '#0B0F1A', padding: '16px 24px', paddingTop: 86, position: 'relative', zIndex: 1 }}>
+        <a href="/servicios" className="bc-back">← Volver a Servicios</a>
+      </div>
 
       {/* HERO */}
       <section style={{ position: 'relative', minHeight: 480, overflow: 'hidden', display: 'flex', alignItems: 'flex-end' }}>
