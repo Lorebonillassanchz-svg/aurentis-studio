@@ -24,6 +24,63 @@ const labelStyle: React.CSSProperties = {
 }
 const trans = (delay = 0) => ({ duration: 0.6, delay })
 
+/* ── Ecommerce floating icon SVGs ────────────────────────── */
+const ICON_PATHS: Record<string, React.ReactNode> = {
+  cart: (
+    <svg viewBox="0 0 24 24" fill="none" width="100%" height="100%">
+      <path d="M2 3H4.5L6.5 14H17.5L19.5 7H6.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+      <circle cx="9" cy="18" r="1.5" stroke="currentColor" strokeWidth="1.4"/>
+      <circle cx="16" cy="18" r="1.5" stroke="currentColor" strokeWidth="1.4"/>
+    </svg>
+  ),
+  box: (
+    <svg viewBox="0 0 24 24" fill="none" width="100%" height="100%">
+      <path d="M12 2L2 7V17L12 22L22 17V7L12 2Z" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M12 22V12M2 7L12 12M22 7L12 12M7 4.5L17 9.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/>
+    </svg>
+  ),
+  tag: (
+    <svg viewBox="0 0 24 24" fill="none" width="100%" height="100%">
+      <path d="M3 3H10L21 14L14 21L3 10V3Z" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+      <circle cx="7.5" cy="7.5" r="1.5" fill="currentColor"/>
+    </svg>
+  ),
+  card: (
+    <svg viewBox="0 0 24 24" fill="none" width="100%" height="100%">
+      <rect x="2" y="5" width="20" height="14" rx="2" stroke="currentColor" strokeWidth="1.4"/>
+      <path d="M2 10H22" stroke="currentColor" strokeWidth="1.4"/>
+      <path d="M6 15H9M12 15H15" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/>
+    </svg>
+  ),
+  bag: (
+    <svg viewBox="0 0 24 24" fill="none" width="100%" height="100%">
+      <path d="M6 2L3 8H21L18 2" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M3 8V20H21V8" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/>
+      <path d="M9 4C9 3 10.3 2 12 2C13.7 2 15 3 15 4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/>
+    </svg>
+  ),
+}
+
+/* ── Particle config ─────────────────────────────────────── */
+const HERO_PARTICLES = [
+  { icon: 'cart', size: 28, left: '7%',  bottom: '8%',  duration: '12s', delay: '0s',    color: 'rgba(99,102,241,0.55)'  },
+  { icon: 'box',  size: 22, left: '16%', bottom: '28%', duration: '9s',  delay: '2s',    color: 'rgba(37,99,255,0.45)'   },
+  { icon: 'tag',  size: 34, left: '24%', bottom: '5%',  duration: '14s', delay: '4s',    color: 'rgba(99,102,241,0.50)'  },
+  { icon: 'card', size: 24, left: '38%', bottom: '18%', duration: '11s', delay: '1s',    color: 'rgba(37,99,255,0.45)'   },
+  { icon: 'bag',  size: 30, left: '52%', bottom: '12%', duration: '13s', delay: '3s',    color: 'rgba(99,102,241,0.55)'  },
+  { icon: 'cart', size: 20, left: '63%', bottom: '32%', duration: '10s', delay: '5s',    color: 'rgba(37,99,255,0.45)'   },
+  { icon: 'box',  size: 32, left: '74%', bottom: '6%',  duration: '15s', delay: '0.5s',  color: 'rgba(99,102,241,0.50)'  },
+  { icon: 'tag',  size: 24, left: '83%', bottom: '22%', duration: '8s',  delay: '2.5s',  color: 'rgba(37,99,255,0.45)'   },
+  { icon: 'bag',  size: 26, left: '91%', bottom: '10%', duration: '11s', delay: '4.5s',  color: 'rgba(99,102,241,0.52)'  },
+]
+
+const CTA_PARTICLES = [
+  { icon: 'cart', size: 48, left: '6%',  bottom: '10%', duration: '14s', delay: '1s',   color: 'rgba(99,102,241,0.35)'  },
+  { icon: 'bag',  size: 40, left: '80%', bottom: '20%', duration: '12s', delay: '0s',   color: 'rgba(37,99,255,0.30)'   },
+  { icon: 'box',  size: 44, left: '50%', bottom: '5%',  duration: '16s', delay: '3s',   color: 'rgba(99,102,241,0.32)'  },
+  { icon: 'card', size: 36, left: '90%', bottom: '45%', duration: '10s', delay: '2s',   color: 'rgba(37,99,255,0.28)'   },
+]
+
 /* ── Data ────────────────────────────────────────────────── */
 const TITLE_WORDS = 'Tu tienda online debería vender mientras duermes. ¿La tuya lo hace?'.split(' ')
 
@@ -31,8 +88,6 @@ const PLATFORMS = [
   {
     name: 'WooCommerce',
     color: '#7F54B3',
-    colorBg: 'rgba(127,84,179,0.12)',
-    colorBorder: 'rgba(127,84,179,0.3)',
     logo: (
       <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
         <rect width="44" height="44" rx="10" fill="#7F54B3"/>
@@ -43,8 +98,6 @@ const PLATFORMS = [
   {
     name: 'Shopify',
     color: '#96BF48',
-    colorBg: 'rgba(150,191,72,0.12)',
-    colorBorder: 'rgba(150,191,72,0.3)',
     logo: (
       <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
         <rect width="44" height="44" rx="10" fill="#96BF48"/>
@@ -56,8 +109,6 @@ const PLATFORMS = [
   {
     name: 'PrestaShop',
     color: '#DF0067',
-    colorBg: 'rgba(223,0,103,0.12)',
-    colorBorder: 'rgba(223,0,103,0.3)',
     logo: (
       <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
         <rect width="44" height="44" rx="10" fill="#DF0067"/>
@@ -140,7 +191,7 @@ export default function DisenoTiendasOnlinePage() {
         .dto-split    { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
         .dto-platforms { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
         .dto-platform-card {
-          display: flex; flex-direction: column; align-items: center; gap: 12;
+          display: flex; flex-direction: column; align-items: center; gap: 12px;
           background: rgba(255,255,255,0.05);
           border: 1px solid rgba(255,255,255,0.08);
           border-radius: 12px; padding: 20px 32px;
@@ -152,12 +203,24 @@ export default function DisenoTiendasOnlinePage() {
           border-color: rgba(37,99,255,0.35);
           box-shadow: 0 8px 28px rgba(37,99,255,0.12);
         }
+        @keyframes floatUp {
+          0%   { transform: translateY(0) rotate(0deg);    opacity: 0; }
+          50%  { opacity: 0.6; }
+          100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+        .dto-particle {
+          position: absolute;
+          pointer-events: none;
+          z-index: 0;
+          animation: floatUp linear infinite;
+        }
         @media (max-width: 768px) {
           .dto-problems  { grid-template-columns: 1fr; }
           .dto-includes  { grid-template-columns: 1fr; }
           .dto-split     { grid-template-columns: 1fr; gap: 36px; }
           .dto-platforms { gap: 12px; }
           .dto-platform-card { padding: 16px 24px; min-width: 130px; }
+          .dto-particle  { display: none; }
         }
       `}</style>
 
@@ -176,14 +239,7 @@ export default function DisenoTiendasOnlinePage() {
       {/* ── S1: HERO ─────────────────────────────────────── */}
       <section style={{ background: '#0B0F1A', padding: '60px 5% 100px', position: 'relative', overflow: 'hidden' }}>
 
-        {/* Dot grid */}
-        <div style={{
-          position: 'absolute', inset: 0, zIndex: 0, pointerEvents: 'none',
-          backgroundImage: 'radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px)',
-          backgroundSize: '28px 28px',
-        }} />
-
-        {/* Radial gradient overlay */}
+        {/* Radial gradient overlay centre-right */}
         <div style={{
           position: 'absolute', inset: 0, zIndex: 0, pointerEvents: 'none',
           background: 'radial-gradient(ellipse at 70% 50%, rgba(37,99,255,0.15) 0%, transparent 60%)',
@@ -197,6 +253,25 @@ export default function DisenoTiendasOnlinePage() {
           filter: 'blur(110px)',
           pointerEvents: 'none', zIndex: 0,
         }} />
+
+        {/* Floating ecommerce particles */}
+        {HERO_PARTICLES.map((p, i) => (
+          <div
+            key={i}
+            className="dto-particle"
+            style={{
+              left: p.left,
+              bottom: p.bottom,
+              width: p.size,
+              height: p.size,
+              color: p.color,
+              animationDuration: p.duration,
+              animationDelay: p.delay,
+            }}
+          >
+            {ICON_PATHS[p.icon]}
+          </div>
+        ))}
 
         <div style={{ maxWidth: 860, margin: '0 auto', position: 'relative', zIndex: 1 }}>
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={trans(0)}>
@@ -247,36 +322,55 @@ export default function DisenoTiendasOnlinePage() {
       </section>
 
       {/* ── S2: PLATAFORMAS ──────────────────────────────── */}
-      <section style={{ background: '#0F172A', padding: '60px 5%', borderTop: '1px solid rgba(255,255,255,0.06)', textAlign: 'center' }}>
-        <motion.p
-          initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={trans()}
-          style={{ fontFamily: 'var(--font-body)', fontSize: 12, fontWeight: 500, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#475569', marginBottom: 28 }}
-        >
-          Trabajo con las mejores plataformas
-        </motion.p>
+      <section style={{
+        background: 'linear-gradient(180deg, #0B0F1A 0%, #0F172A 100%)',
+        padding: '60px 5%',
+        borderTop: '1px solid rgba(255,255,255,0.06)',
+        textAlign: 'center',
+        position: 'relative',
+        overflow: 'hidden',
+      }}>
+        {/* Blob centrado sutil */}
+        <div style={{
+          position: 'absolute', top: '50%', left: '50%',
+          transform: 'translate(-50%, -50%)',
+          width: 600, height: 300, borderRadius: '50%',
+          background: 'radial-gradient(ellipse, rgba(37,99,255,0.08) 0%, transparent 70%)',
+          filter: 'blur(40px)',
+          pointerEvents: 'none', zIndex: 0,
+        }} />
 
-        <div className="dto-platforms">
-          {PLATFORMS.map((p, i) => (
-            <motion.div
-              key={p.name}
-              className="dto-platform-card"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={trans(i * 0.15)}
-            >
-              {p.logo}
-              <span style={{
-                fontFamily: 'var(--font-display)',
-                fontSize: 13,
-                fontWeight: 600,
-                color: p.color,
-                letterSpacing: '0.02em',
-              }}>
-                {p.name}
-              </span>
-            </motion.div>
-          ))}
+        <div style={{ position: 'relative', zIndex: 1 }}>
+          <motion.p
+            initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={trans()}
+            style={{ fontFamily: 'var(--font-body)', fontSize: 12, fontWeight: 500, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#475569', marginBottom: 28 }}
+          >
+            Trabajo con las mejores plataformas
+          </motion.p>
+
+          <div className="dto-platforms">
+            {PLATFORMS.map((p, i) => (
+              <motion.div
+                key={p.name}
+                className="dto-platform-card"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={trans(i * 0.15)}
+              >
+                {p.logo}
+                <span style={{
+                  fontFamily: 'var(--font-display)',
+                  fontSize: 13,
+                  fontWeight: 600,
+                  color: p.color,
+                  letterSpacing: '0.02em',
+                }}>
+                  {p.name}
+                </span>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -286,6 +380,23 @@ export default function DisenoTiendasOnlinePage() {
       {/* ── S3: PROBLEMAS ────────────────────────────────── */}
       <section style={{ background: '#0D1117', padding: '80px 5% 100px', position: 'relative', overflow: 'hidden' }}>
 
+        {/* Diagonal decorative lines */}
+        <div style={{
+          position: 'absolute', top: '-10%', left: '-5%',
+          width: '60%', height: '120%',
+          borderRight: '1px solid rgba(99,102,241,0.03)',
+          transform: 'rotate(15deg)',
+          pointerEvents: 'none', zIndex: 0,
+        }} />
+        <div style={{
+          position: 'absolute', top: '-10%', right: '-5%',
+          width: '60%', height: '120%',
+          borderLeft: '1px solid rgba(37,99,255,0.03)',
+          transform: 'rotate(-15deg)',
+          pointerEvents: 'none', zIndex: 0,
+        }} />
+
+        {/* Blob */}
         <div style={{
           position: 'absolute', bottom: '-30%', left: '-15%',
           width: 700, height: 700, borderRadius: '50%',
@@ -335,10 +446,11 @@ export default function DisenoTiendasOnlinePage() {
       {/* ── S4: LO QUE INCLUYE ───────────────────────────── */}
       <section style={{ background: '#0B0F1A', padding: '100px 5%', position: 'relative', overflow: 'hidden' }}>
 
+        {/* Blob violeta esquina derecha */}
         <div style={{
           position: 'absolute', top: '-10%', right: '-8%',
-          width: 520, height: 520, borderRadius: '50%',
-          background: 'rgba(37,99,255,0.08)',
+          width: 560, height: 560, borderRadius: '50%',
+          background: 'rgba(99,102,241,0.10)',
           filter: 'blur(90px)',
           pointerEvents: 'none', zIndex: 0,
         }} />
@@ -380,10 +492,21 @@ export default function DisenoTiendasOnlinePage() {
       <div style={{ height: 1, background: 'linear-gradient(90deg, transparent 0%, rgba(37,99,255,0.18) 50%, transparent 100%)' }} />
 
       {/* ── S5: PÁRRAFO DESCRIPTIVO ──────────────────────── */}
-      <section style={{ background: '#0F172A', padding: '100px 5%' }}>
+      <section style={{ background: '#0F172A', padding: '100px 5%', position: 'relative', overflow: 'hidden' }}>
+
+        {/* Glow detrás de la card */}
+        <div style={{
+          position: 'absolute', top: '50%', left: '50%',
+          transform: 'translate(-50%, -50%)',
+          width: 700, height: 300, borderRadius: '50%',
+          background: 'radial-gradient(ellipse, rgba(37,99,255,0.06) 0%, transparent 70%)',
+          filter: 'blur(50px)',
+          pointerEvents: 'none', zIndex: 0,
+        }} />
+
         <motion.div
           initial={{ opacity: 0, y: 22 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={trans()}
-          style={{ maxWidth: 800, margin: '0 auto', position: 'relative' }}
+          style={{ maxWidth: 800, margin: '0 auto', position: 'relative', zIndex: 1 }}
         >
           <div style={{
             position: 'absolute', left: 0, top: 0, bottom: 0, width: 4,
@@ -406,8 +529,18 @@ export default function DisenoTiendasOnlinePage() {
       <div style={{ height: 1, background: 'linear-gradient(90deg, transparent 0%, rgba(99,102,241,0.2) 50%, transparent 100%)' }} />
 
       {/* ── S6: SPLIT IMAGEN ─────────────────────────────── */}
-      <section style={{ background: '#0B0F1A', padding: '100px 5%' }}>
-        <div className="dto-split" style={{ maxWidth: 1100, margin: '0 auto' }}>
+      <section style={{ background: '#0B0F1A', padding: '100px 5%', position: 'relative', overflow: 'hidden' }}>
+
+        {/* Blob azul esquina izquierda */}
+        <div style={{
+          position: 'absolute', bottom: '-20%', left: '-10%',
+          width: 500, height: 500, borderRadius: '50%',
+          background: 'rgba(37,99,255,0.07)',
+          filter: 'blur(90px)',
+          pointerEvents: 'none', zIndex: 0,
+        }} />
+
+        <div className="dto-split" style={{ maxWidth: 1100, margin: '0 auto', position: 'relative', zIndex: 1 }}>
           <motion.div
             initial={{ opacity: 0, x: -24 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={trans()}
             style={{ position: 'relative', borderRadius: 16, overflow: 'hidden', aspectRatio: '4/3' }}
@@ -451,6 +584,7 @@ export default function DisenoTiendasOnlinePage() {
         position: 'relative',
         overflow: 'hidden',
       }}>
+        {/* Blob azul-violeta centrado */}
         <div style={{
           position: 'absolute', top: '50%', left: '50%',
           transform: 'translate(-50%, -50%)',
@@ -459,13 +593,25 @@ export default function DisenoTiendasOnlinePage() {
           filter: 'blur(60px)',
           pointerEvents: 'none', zIndex: 0,
         }} />
-        <div style={{
-          position: 'absolute', bottom: '-20%', left: '-10%',
-          width: 600, height: 600, borderRadius: '50%',
-          background: 'rgba(99,102,241,0.10)',
-          filter: 'blur(100px)',
-          pointerEvents: 'none', zIndex: 0,
-        }} />
+
+        {/* Floating particles CTA */}
+        {CTA_PARTICLES.map((p, i) => (
+          <div
+            key={i}
+            className="dto-particle"
+            style={{
+              left: p.left,
+              bottom: p.bottom,
+              width: p.size,
+              height: p.size,
+              color: p.color,
+              animationDuration: p.duration,
+              animationDelay: p.delay,
+            }}
+          >
+            {ICON_PATHS[p.icon]}
+          </div>
+        ))}
 
         <div style={{ position: 'relative', zIndex: 1 }}>
           <motion.div initial={{ opacity: 0, y: 22 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={trans()}>
