@@ -241,29 +241,29 @@ export default function CommunityManagerPage() {
         <div className="cm-aurora" style={{ position: 'absolute', inset: 0, zIndex: 0, overflow: 'hidden', pointerEvents: 'none' }}>
           {/* Blob 1 */}
           <div style={{
-            position: 'absolute', width: 600, height: 600,
+            position: 'absolute', width: 720, height: 720,
             top: -200, right: -100,
             borderRadius: '50%',
-            background: 'radial-gradient(circle, rgba(99,102,241,0.25) 0%, transparent 70%)',
-            filter: 'blur(80px)',
+            background: 'radial-gradient(circle, rgba(99,102,241,0.45) 0%, transparent 70%)',
+            filter: 'blur(60px)',
             animation: 'auroraMove1 8s ease-in-out infinite alternate',
           }} />
           {/* Blob 2 */}
           <div style={{
-            position: 'absolute', width: 500, height: 500,
+            position: 'absolute', width: 600, height: 600,
             bottom: -100, left: -100,
             borderRadius: '50%',
-            background: 'radial-gradient(circle, rgba(37,99,255,0.20) 0%, transparent 70%)',
-            filter: 'blur(100px)',
+            background: 'radial-gradient(circle, rgba(37,99,255,0.40) 0%, transparent 70%)',
+            filter: 'blur(70px)',
             animation: 'auroraMove2 10s ease-in-out infinite alternate',
           }} />
           {/* Blob 3 */}
           <div style={{
-            position: 'absolute', width: 400, height: 400,
+            position: 'absolute', width: 480, height: 480,
             top: '50%', left: '40%',
             borderRadius: '50%',
-            background: 'radial-gradient(circle, rgba(129,140,248,0.15) 0%, transparent 70%)',
-            filter: 'blur(60px)',
+            background: 'radial-gradient(circle, rgba(129,140,248,0.35) 0%, transparent 70%)',
+            filter: 'blur(40px)',
             animation: 'auroraMove3 12s ease-in-out infinite alternate',
           }} />
         </div>
