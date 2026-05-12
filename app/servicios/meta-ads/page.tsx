@@ -292,23 +292,23 @@ export default function MetaAdsPage() {
 
         <div className="ma-hero-split" style={{ maxWidth: 1200, margin: '0 auto', position: 'relative', zIndex: 1 }}>
           {/* Left — text */}
-          <div>
+          <div style={isMobile ? { width: '100%', maxWidth: '100%', overflow: 'hidden' } : {}}>
             <Fade isMobile={isMobile} mode="enter" delay={0}>
               <div style={{ width: 40, height: 2, background: '#2563FF', borderRadius: 2, marginBottom: 14 }} />
               <span style={labelStyle}>Meta Ads &amp; Google Ads</span>
             </Fade>
 
-            <h1 style={{ fontFamily: 'var(--font-display)', fontSize: isMobile ? '2.2rem' : 'clamp(28px, 3.8vw, 54px)', fontWeight: 800, color: '#F1F5F9', margin: '0 0 24px', lineHeight: 1.15, wordBreak: 'break-word', overflowWrap: 'break-word', width: '100%' }}>
+            <h1 style={{ fontFamily: 'var(--font-display)', fontSize: isMobile ? 'clamp(1.8rem, 5vw, 3.5rem)' : 'clamp(28px, 3.8vw, 54px)', fontWeight: 800, color: '#F1F5F9', margin: '0 0 24px', lineHeight: 1.2, wordBreak: 'break-word', overflowWrap: 'break-word', width: '100%', hyphens: 'none' }}>
               {isMobile
                 ? TITLE_WORDS.map((word, i) => (
-                    <span key={i} style={{ marginRight: '0.28em', ...(i >= SECOND_LINE_START ? { color: '#2563FF' } : {}) }}>
+                    <span key={i} style={{ display: 'inline', marginRight: '0.28em', ...(i >= SECOND_LINE_START ? { color: '#2563FF' } : {}) }}>
                       {word}
                     </span>
                   ))
                 : TITLE_WORDS.map((word, i) => (
                     <MotionWrapper
                       key={i}
-                      style={{ display: 'inline-block', marginRight: '0.28em', ...(i >= SECOND_LINE_START ? { color: '#2563FF' } : {}) }}
+                      style={{ display: 'inline', marginRight: '0.28em', ...(i >= SECOND_LINE_START ? { color: '#2563FF' } : {}) }}
                       initial={{ opacity: 0, y: 16 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.5, delay: 0.1 + i * 0.08 }}

@@ -406,19 +406,19 @@ export default function CommunityManagerPage() {
           </circle>
         </svg>
 
-        <div style={{ maxWidth: 860, margin: '0 auto', position: 'relative', zIndex: 1 }}>
+        <div style={{ maxWidth: 860, margin: '0 auto', position: 'relative', zIndex: 1, width: '100%', overflow: 'hidden' }}>
           <Fade isMobile={isMobile} mode="enter" delay={0}>
             <div style={{ width: 40, height: 2, background: '#2563FF', borderRadius: 2, marginBottom: 14 }} />
             <span style={labelStyle}>Community Manager</span>
           </Fade>
 
           {/* Title — stagger words on desktop, plain on mobile */}
-          <h1 style={{ fontFamily: 'var(--font-display)', fontSize: isMobile ? '2.2rem' : 'clamp(30px, 4.5vw, 58px)', fontWeight: 800, color: '#F1F5F9', margin: '0 0 24px', lineHeight: 1.15, wordBreak: 'break-word', overflowWrap: 'break-word', width: '100%' }}>
+          <h1 style={{ fontFamily: 'var(--font-display)', fontSize: isMobile ? 'clamp(1.8rem, 5vw, 3.5rem)' : 'clamp(30px, 4.5vw, 58px)', fontWeight: 800, color: '#F1F5F9', margin: '0 0 24px', lineHeight: 1.2, wordBreak: 'break-word', overflowWrap: 'break-word', width: '100%', hyphens: 'none' }}>
             {isMobile
               ? TITLE_WORDS.map((word, i) => {
                   const isLast4 = i >= TITLE_WORDS.length - 4
                   return (
-                    <span key={i} style={{ marginRight: '0.28em', ...(isLast4 ? gradText : {}) }}>
+                    <span key={i} style={{ display: 'inline', marginRight: '0.28em', ...(isLast4 ? gradText : {}) }}>
                       {word}
                     </span>
                   )
@@ -428,7 +428,7 @@ export default function CommunityManagerPage() {
                   return (
                     <MotionWrapper
                       key={i}
-                      style={{ display: 'inline-block', marginRight: '0.28em', ...(isLast4 ? gradText : {}) }}
+                      style={{ display: 'inline', marginRight: '0.28em', ...(isLast4 ? gradText : {}) }}
                       initial={{ opacity: 0, y: 16 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.5, delay: 0.1 + i * 0.07 }}
