@@ -193,6 +193,20 @@ export default function CommunityManagerPage() {
         .cm-net-card:hover { transform: scale(1.05); border-color: rgba(37,99,255,0.35); box-shadow: 0 8px 28px rgba(37,99,255,0.12); }
         /* Blobs — hidden on mobile (no GPU filter:blur cost) */
         .cm-blob { position: absolute; border-radius: 50%; pointer-events: none; z-index: 0; }
+        /* Aurora blobs — hidden on mobile */
+        .cm-aurora { display: block; }
+        @keyframes auroraMove1 {
+          0%   { transform: translate(0px, 0px) scale(1); }
+          100% { transform: translate(30px, -30px) scale(1.1); }
+        }
+        @keyframes auroraMove2 {
+          0%   { transform: translate(0px, 0px) scale(1); }
+          100% { transform: translate(-20px, 20px) scale(1.15); }
+        }
+        @keyframes auroraMove3 {
+          0%   { transform: translate(0px, 0px) scale(1); }
+          100% { transform: translate(20px, -20px) scale(0.95); }
+        }
         @media (max-width: 768px) {
           .cm-problems { grid-template-columns: 1fr; }
           .cm-includes { grid-template-columns: 1fr; }
@@ -200,6 +214,7 @@ export default function CommunityManagerPage() {
           .cm-networks { gap: 10px; }
           .cm-net-card { padding: 16px 20px; min-width: 120px; }
           .cm-blob     { display: none; }
+          .cm-aurora   { display: none; }
         }
       `}</style>
 
@@ -218,19 +233,40 @@ export default function CommunityManagerPage() {
       {/* ── S1: HERO ─────────────────────────────────────────── */}
       <section style={{
         backgroundColor: '#0B0F1A',
-        background: isMobile
-          ? 'linear-gradient(135deg, #0B0F1A 0%, #0F172A 60%, #141C2E 100%)'
-          : '#0B0F1A',
         padding: '60px 5% 100px',
         position: 'relative',
         overflow: 'hidden',
       }}>
-        {!isMobile && (
-          <>
-            <div style={{ position: 'absolute', inset: 0, zIndex: 0, pointerEvents: 'none', background: 'radial-gradient(ellipse at 70% 50%, rgba(37,99,255,0.14) 0%, transparent 60%)' }} />
-            <div className="cm-blob" style={{ top: '-20%', right: '-12%', width: 720, height: 720, background: 'rgba(37,99,255,0.11)', filter: 'blur(110px)' }} />
-          </>
-        )}
+        {/* Aurora — desktop only (cm-aurora hidden on mobile via CSS) */}
+        <div className="cm-aurora" style={{ position: 'absolute', inset: 0, zIndex: 0, overflow: 'hidden', pointerEvents: 'none' }}>
+          {/* Blob 1 */}
+          <div style={{
+            position: 'absolute', width: 600, height: 600,
+            top: -200, right: -100,
+            borderRadius: '50%',
+            background: 'radial-gradient(circle, rgba(99,102,241,0.25) 0%, transparent 70%)',
+            filter: 'blur(80px)',
+            animation: 'auroraMove1 8s ease-in-out infinite alternate',
+          }} />
+          {/* Blob 2 */}
+          <div style={{
+            position: 'absolute', width: 500, height: 500,
+            bottom: -100, left: -100,
+            borderRadius: '50%',
+            background: 'radial-gradient(circle, rgba(37,99,255,0.20) 0%, transparent 70%)',
+            filter: 'blur(100px)',
+            animation: 'auroraMove2 10s ease-in-out infinite alternate',
+          }} />
+          {/* Blob 3 */}
+          <div style={{
+            position: 'absolute', width: 400, height: 400,
+            top: '50%', left: '40%',
+            borderRadius: '50%',
+            background: 'radial-gradient(circle, rgba(129,140,248,0.15) 0%, transparent 70%)',
+            filter: 'blur(60px)',
+            animation: 'auroraMove3 12s ease-in-out infinite alternate',
+          }} />
+        </div>
 
         <div style={{ maxWidth: 860, margin: '0 auto', position: 'relative', zIndex: 1 }}>
           <Fade isMobile={isMobile} mode="enter" delay={0}>
