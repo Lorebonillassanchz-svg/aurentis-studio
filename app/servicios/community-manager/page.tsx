@@ -193,28 +193,26 @@ export default function CommunityManagerPage() {
         .cm-net-card:hover { transform: scale(1.05); border-color: rgba(37,99,255,0.35); box-shadow: 0 8px 28px rgba(37,99,255,0.12); }
         /* Blobs — hidden on mobile (no GPU filter:blur cost) */
         .cm-blob { position: absolute; border-radius: 50%; pointer-events: none; z-index: 0; }
-        /* Aurora blobs — hidden on mobile */
-        .cm-aurora { display: block; }
-        @keyframes auroraMove1 {
-          0%   { transform: translate(0px, 0px) scale(1); }
-          100% { transform: translate(30px, -30px) scale(1.1); }
+        /* Network SVG — hidden on mobile */
+        .cm-network-svg { display: block; }
+        @keyframes flowLine {
+          0%   { stroke-dashoffset: 1000; opacity: 0; }
+          20%  { opacity: 0.6; }
+          80%  { opacity: 0.6; }
+          100% { stroke-dashoffset: 0; opacity: 0; }
         }
-        @keyframes auroraMove2 {
-          0%   { transform: translate(0px, 0px) scale(1); }
-          100% { transform: translate(-20px, 20px) scale(1.15); }
-        }
-        @keyframes auroraMove3 {
-          0%   { transform: translate(0px, 0px) scale(1); }
-          100% { transform: translate(20px, -20px) scale(0.95); }
+        @keyframes cmPulse {
+          0%, 100% { r: 3; opacity: 1; }
+          50%       { r: 6; opacity: 0.5; }
         }
         @media (max-width: 768px) {
-          .cm-problems { grid-template-columns: 1fr; }
-          .cm-includes { grid-template-columns: 1fr; }
-          .cm-split    { grid-template-columns: 1fr; gap: 36px; }
-          .cm-networks { gap: 10px; }
-          .cm-net-card { padding: 16px 20px; min-width: 120px; }
-          .cm-blob     { display: none; }
-          .cm-aurora   { display: none; }
+          .cm-problems    { grid-template-columns: 1fr; }
+          .cm-includes    { grid-template-columns: 1fr; }
+          .cm-split       { grid-template-columns: 1fr; gap: 36px; }
+          .cm-networks    { gap: 10px; }
+          .cm-net-card    { padding: 16px 20px; min-width: 120px; }
+          .cm-blob        { display: none; }
+          .cm-network-svg { display: none; }
         }
       `}</style>
 
@@ -237,36 +235,150 @@ export default function CommunityManagerPage() {
         position: 'relative',
         overflow: 'hidden',
       }}>
-        {/* Aurora — desktop only (cm-aurora hidden on mobile via CSS) */}
-        <div className="cm-aurora" style={{ position: 'absolute', inset: 0, zIndex: 0, overflow: 'hidden', pointerEvents: 'none' }}>
-          {/* Blob 1 */}
-          <div style={{
-            position: 'absolute', width: 720, height: 720,
-            top: -200, right: -100,
-            borderRadius: '50%',
-            background: 'radial-gradient(circle, rgba(99,102,241,0.45) 0%, transparent 70%)',
-            filter: 'blur(60px)',
-            animation: 'auroraMove1 8s ease-in-out infinite alternate',
-          }} />
-          {/* Blob 2 */}
-          <div style={{
-            position: 'absolute', width: 600, height: 600,
-            bottom: -100, left: -100,
-            borderRadius: '50%',
-            background: 'radial-gradient(circle, rgba(37,99,255,0.40) 0%, transparent 70%)',
-            filter: 'blur(70px)',
-            animation: 'auroraMove2 10s ease-in-out infinite alternate',
-          }} />
-          {/* Blob 3 */}
-          <div style={{
-            position: 'absolute', width: 480, height: 480,
-            top: '50%', left: '40%',
-            borderRadius: '50%',
-            background: 'radial-gradient(circle, rgba(129,140,248,0.35) 0%, transparent 70%)',
-            filter: 'blur(40px)',
-            animation: 'auroraMove3 12s ease-in-out infinite alternate',
-          }} />
-        </div>
+        {/* Network SVG — desktop only (cm-network-svg hidden on mobile via CSS) */}
+        <svg
+          className="cm-network-svg"
+          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', opacity: 0.4, pointerEvents: 'none', zIndex: 0 }}
+          viewBox="0 0 100 100"
+          preserveAspectRatio="none"
+          aria-hidden="true"
+        >
+          <defs>
+            {/* Drop-shadow filters per network */}
+            <filter id="glowIG" x="-50%" y="-50%" width="200%" height="200%">
+              <feDropShadow dx="0" dy="0" stdDeviation="0.8" floodColor="#E1306C" floodOpacity="0.9"/>
+            </filter>
+            <filter id="glowTK" x="-50%" y="-50%" width="200%" height="200%">
+              <feDropShadow dx="0" dy="0" stdDeviation="0.8" floodColor="#ffffff" floodOpacity="0.7"/>
+            </filter>
+            <filter id="glowFB" x="-50%" y="-50%" width="200%" height="200%">
+              <feDropShadow dx="0" dy="0" stdDeviation="0.8" floodColor="#1877F2" floodOpacity="0.9"/>
+            </filter>
+            <filter id="glowLI" x="-50%" y="-50%" width="200%" height="200%">
+              <feDropShadow dx="0" dy="0" stdDeviation="0.8" floodColor="#0A66C2" floodOpacity="0.9"/>
+            </filter>
+            <filter id="glowYT" x="-50%" y="-50%" width="200%" height="200%">
+              <feDropShadow dx="0" dy="0" stdDeviation="0.8" floodColor="#FF0000" floodOpacity="0.9"/>
+            </filter>
+          </defs>
+
+          {/* ── Bezier lines from each network origin → center (50,50) ── */}
+
+          {/* Instagram (85,20) → center */}
+          <path
+            d="M 85,20 C 75,25 65,35 50,50"
+            fill="none" stroke="#E1306C" strokeWidth="1.5" opacity="0.6"
+            filter="url(#glowIG)"
+            strokeDasharray="1000"
+            style={{ animation: 'flowLine 5s ease-in-out infinite', animationDelay: '0s' }}
+          />
+          {/* Instagram branch to LinkedIn */}
+          <path
+            d="M 85,20 C 80,15 72,12 60,10"
+            fill="none" stroke="#E1306C" strokeWidth="0.8" opacity="0.35"
+            filter="url(#glowIG)"
+            strokeDasharray="1000"
+            style={{ animation: 'flowLine 7s ease-in-out infinite', animationDelay: '1.2s' }}
+          />
+
+          {/* TikTok (95,45) → center */}
+          <path
+            d="M 95,45 C 82,44 68,47 50,50"
+            fill="none" stroke="#ffffff" strokeWidth="1.5" opacity="0.4"
+            filter="url(#glowTK)"
+            strokeDasharray="1000"
+            style={{ animation: 'flowLine 6s ease-in-out infinite', animationDelay: '0.8s' }}
+          />
+          {/* TikTok branch to YouTube */}
+          <path
+            d="M 95,45 C 90,52 82,56 70,60"
+            fill="none" stroke="#ffffff" strokeWidth="0.8" opacity="0.25"
+            filter="url(#glowTK)"
+            strokeDasharray="1000"
+            style={{ animation: 'flowLine 8s ease-in-out infinite', animationDelay: '3s' }}
+          />
+
+          {/* Facebook (80,80) → center */}
+          <path
+            d="M 80,80 C 72,72 62,62 50,50"
+            fill="none" stroke="#1877F2" strokeWidth="1.5" opacity="0.6"
+            filter="url(#glowFB)"
+            strokeDasharray="1000"
+            style={{ animation: 'flowLine 4.5s ease-in-out infinite', animationDelay: '1.5s' }}
+          />
+          {/* Facebook branch to YouTube */}
+          <path
+            d="M 80,80 C 76,72 73,66 70,60"
+            fill="none" stroke="#1877F2" strokeWidth="0.8" opacity="0.35"
+            filter="url(#glowFB)"
+            strokeDasharray="1000"
+            style={{ animation: 'flowLine 6.5s ease-in-out infinite', animationDelay: '0.4s' }}
+          />
+
+          {/* LinkedIn (60,10) → center */}
+          <path
+            d="M 60,10 C 58,22 55,36 50,50"
+            fill="none" stroke="#0A66C2" strokeWidth="1.5" opacity="0.6"
+            filter="url(#glowLI)"
+            strokeDasharray="1000"
+            style={{ animation: 'flowLine 7s ease-in-out infinite', animationDelay: '2.2s' }}
+          />
+
+          {/* YouTube (70,60) → center */}
+          <path
+            d="M 70,60 C 64,57 58,54 50,50"
+            fill="none" stroke="#FF0000" strokeWidth="1.5" opacity="0.6"
+            filter="url(#glowYT)"
+            strokeDasharray="1000"
+            style={{ animation: 'flowLine 5.5s ease-in-out infinite', animationDelay: '0.6s' }}
+          />
+          {/* YouTube branch to Instagram */}
+          <path
+            d="M 70,60 C 74,45 78,32 85,20"
+            fill="none" stroke="#FF0000" strokeWidth="0.8" opacity="0.3"
+            filter="url(#glowYT)"
+            strokeDasharray="1000"
+            style={{ animation: 'flowLine 9s ease-in-out infinite', animationDelay: '4s' }}
+          />
+
+          {/* ── Pulsing origin dots ── */}
+
+          {/* Instagram */}
+          <circle cx="85" cy="20" fill="#E1306C" filter="url(#glowIG)">
+            <animate attributeName="r" values="3;5.5;3" dur="2s" repeatCount="indefinite" begin="0s"/>
+            <animate attributeName="opacity" values="1;0.5;1" dur="2s" repeatCount="indefinite" begin="0s"/>
+          </circle>
+
+          {/* TikTok */}
+          <circle cx="95" cy="45" fill="#ffffff" filter="url(#glowTK)">
+            <animate attributeName="r" values="3;5.5;3" dur="2.4s" repeatCount="indefinite" begin="0.5s"/>
+            <animate attributeName="opacity" values="0.8;0.3;0.8" dur="2.4s" repeatCount="indefinite" begin="0.5s"/>
+          </circle>
+
+          {/* Facebook */}
+          <circle cx="80" cy="80" fill="#1877F2" filter="url(#glowFB)">
+            <animate attributeName="r" values="3;5.5;3" dur="1.8s" repeatCount="indefinite" begin="1s"/>
+            <animate attributeName="opacity" values="1;0.5;1" dur="1.8s" repeatCount="indefinite" begin="1s"/>
+          </circle>
+
+          {/* LinkedIn */}
+          <circle cx="60" cy="10" fill="#0A66C2" filter="url(#glowLI)">
+            <animate attributeName="r" values="3;5.5;3" dur="2.2s" repeatCount="indefinite" begin="0.3s"/>
+            <animate attributeName="opacity" values="1;0.5;1" dur="2.2s" repeatCount="indefinite" begin="0.3s"/>
+          </circle>
+
+          {/* YouTube */}
+          <circle cx="70" cy="60" fill="#FF0000" filter="url(#glowYT)">
+            <animate attributeName="r" values="3;5.5;3" dur="2s" repeatCount="indefinite" begin="0.8s"/>
+            <animate attributeName="opacity" values="1;0.5;1" dur="2s" repeatCount="indefinite" begin="0.8s"/>
+          </circle>
+
+          {/* Center convergence dot */}
+          <circle cx="50" cy="50" r="2" fill="rgba(129,140,248,0.6)">
+            <animate attributeName="r" values="2;4;2" dur="3s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values="0.6;1;0.6" dur="3s" repeatCount="indefinite"/>
+          </circle>
+        </svg>
 
         <div style={{ maxWidth: 860, margin: '0 auto', position: 'relative', zIndex: 1 }}>
           <Fade isMobile={isMobile} mode="enter" delay={0}>
