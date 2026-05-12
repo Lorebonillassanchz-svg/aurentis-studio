@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import dynamic from 'next/dynamic'
@@ -33,6 +33,18 @@ const labelStyle: React.CSSProperties = {
   marginBottom: 18,
 }
 const trans = (delay = 0) => ({ duration: 0.6, delay })
+
+/* ── Mobile detection ────────────────────────────────────── */
+function useIsMobile() {
+  const [isMobile, setIsMobile] = useState(false)
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768)
+    check()
+    window.addEventListener('resize', check)
+    return () => window.removeEventListener('resize', check)
+  }, [])
+  return isMobile
+}
 
 /* ── Data ────────────────────────────────────────────────── */
 const TITLE_WORDS = 'Tu tienda online debería vender mientras duermes. ¿La tuya lo hace?'.split(' ')
@@ -136,6 +148,8 @@ function CTAButton() {
 
 /* ── Page ────────────────────────────────────────────────── */
 export default function DisenoTiendasOnlinePage() {
+  const isMobile = useIsMobile()
+
   return (
     <>
       <style>{`
@@ -190,7 +204,12 @@ export default function DisenoTiendasOnlinePage() {
       </div>
 
       {/* ── S1: HERO ─────────────────────────────────────── */}
-      <section style={{ background: '#0B0F1A', padding: '60px 5% 100px', position: 'relative', overflow: 'hidden' }}>
+      <section style={{
+        background: isMobile
+          ? 'linear-gradient(135deg, #0B0F1A 0%, #0F172A 60%, #141C2E 100%)'
+          : '#0B0F1A',
+        padding: '60px 5% 100px', position: 'relative', overflow: 'hidden',
+      }}>
 
         {/* Radial gradient overlay centre-right */}
         <div style={{
@@ -207,8 +226,8 @@ export default function DisenoTiendasOnlinePage() {
           pointerEvents: 'none', zIndex: 0,
         }} />
 
-        {/* Floating ecommerce particles — client-only, no SSR flash */}
-        <HeroParticles />
+        {/* Floating ecommerce particles — desktop only */}
+        {!isMobile && <HeroParticles />}
 
         <div style={{ maxWidth: 860, margin: '0 auto', position: 'relative', zIndex: 1 }}>
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={trans(0)}>
@@ -279,7 +298,7 @@ export default function DisenoTiendasOnlinePage() {
 
         <div style={{ position: 'relative', zIndex: 1 }}>
           <motion.p
-            initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={trans()}
+            initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-50px' }} transition={trans()}
             style={{ fontFamily: 'var(--font-body)', fontSize: 12, fontWeight: 500, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#475569', marginBottom: 28 }}
           >
             Trabajo con las mejores plataformas
@@ -292,7 +311,7 @@ export default function DisenoTiendasOnlinePage() {
                 className="dto-platform-card"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, margin: '-50px' }}
                 transition={trans(i * 0.15)}
               >
                 {p.logo}
@@ -344,7 +363,7 @@ export default function DisenoTiendasOnlinePage() {
 
         <div style={{ maxWidth: 1100, margin: '0 auto', position: 'relative', zIndex: 1 }}>
           <motion.div
-            initial={{ opacity: 0, y: 22 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={trans()}
+            initial={{ opacity: 0, y: 22 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-50px' }} transition={trans()}
             style={{ marginBottom: 48 }}
           >
             <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(22px, 3vw, 36px)', fontWeight: 800, color: '#F1F5F9', margin: '0 0 12px', lineHeight: 1.2 }}>
@@ -361,7 +380,7 @@ export default function DisenoTiendasOnlinePage() {
                 key={i}
                 initial={{ opacity: 0, y: 22 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, margin: '-50px' }}
                 transition={trans(i * 0.1)}
                 style={{ background: '#0F172A', borderLeft: '3px solid #2563FF', borderRadius: '0 14px 14px 0', padding: '24px 26px' }}
               >
@@ -394,7 +413,7 @@ export default function DisenoTiendasOnlinePage() {
 
         <div style={{ maxWidth: 1000, margin: '0 auto', position: 'relative', zIndex: 1 }}>
           <motion.div
-            initial={{ opacity: 0, y: 22 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={trans()}
+            initial={{ opacity: 0, y: 22 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-50px' }} transition={trans()}
             style={{ marginBottom: 48 }}
           >
             <span style={labelStyle}>Lo que recibes</span>
@@ -409,7 +428,7 @@ export default function DisenoTiendasOnlinePage() {
                 key={i}
                 initial={{ opacity: 0, y: 18 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: true, margin: '-50px' }}
                 transition={trans(i * 0.1)}
                 style={{ display: 'flex', alignItems: 'flex-start', gap: 12 }}
               >
@@ -442,7 +461,7 @@ export default function DisenoTiendasOnlinePage() {
         }} />
 
         <motion.div
-          initial={{ opacity: 0, y: 22 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={trans()}
+          initial={{ opacity: 0, y: 22 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-50px' }} transition={trans()}
           style={{ maxWidth: 800, margin: '0 auto', position: 'relative', zIndex: 1 }}
         >
           <div style={{
@@ -479,7 +498,7 @@ export default function DisenoTiendasOnlinePage() {
 
         <div className="dto-split" style={{ maxWidth: 1100, margin: '0 auto', position: 'relative', zIndex: 1 }}>
           <motion.div
-            initial={{ opacity: 0, x: -24 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={trans()}
+            initial={{ opacity: 0, x: -24 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: '-50px' }} transition={trans()}
             style={{ position: 'relative', borderRadius: 16, overflow: 'hidden', aspectRatio: '4/3' }}
           >
             <Image
@@ -492,7 +511,7 @@ export default function DisenoTiendasOnlinePage() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, x: 24 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={trans(0.1)}
+            initial={{ opacity: 0, x: 24 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: '-50px' }} transition={trans(0.1)}
           >
             <span style={labelStyle}>El proceso</span>
             <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(22px, 2.8vw, 34px)', fontWeight: 800, color: '#F1F5F9', margin: '0 0 18px', lineHeight: 1.2 }}>
@@ -531,11 +550,11 @@ export default function DisenoTiendasOnlinePage() {
           pointerEvents: 'none', zIndex: 0,
         }} />
 
-        {/* Floating particles CTA — client-only, no SSR flash */}
-        <CTAParticles />
+        {/* Floating particles CTA — desktop only */}
+        {!isMobile && <CTAParticles />}
 
         <div style={{ position: 'relative', zIndex: 1 }}>
-          <motion.div initial={{ opacity: 0, y: 22 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={trans()}>
+          <motion.div initial={{ opacity: 0, y: 22 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-50px' }} transition={trans()}>
             <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(26px, 3.5vw, 46px)', fontWeight: 800, color: '#F1F5F9', margin: '0 0 18px', lineHeight: 1.15 }}>
               ¿Tu tienda online está{' '}
               <span style={gradText}>perdiendo ventas cada día?</span>
