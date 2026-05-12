@@ -231,7 +231,7 @@ export default function CommunityManagerPage() {
       {/* ── S1: HERO ─────────────────────────────────────────── */}
       <section style={{
         backgroundColor: '#0B0F1A',
-        padding: '60px 5% 100px',
+        padding: '60px max(20px, 5%) 100px',
         position: 'relative',
         overflow: 'hidden',
       }}>
@@ -413,7 +413,7 @@ export default function CommunityManagerPage() {
           </Fade>
 
           {/* Title — stagger words on desktop, plain on mobile */}
-          <h1 style={{ fontFamily: 'var(--font-display)', fontSize: isMobile ? '2.2rem' : 'clamp(30px, 4.5vw, 58px)', fontWeight: 800, color: '#F1F5F9', margin: '0 0 24px', lineHeight: 1.15, wordBreak: 'break-word', overflowWrap: 'break-word', width: '100%' }}>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight" style={{ fontFamily: 'var(--font-display)', fontWeight: 800, color: '#F1F5F9', margin: '0 0 24px', wordBreak: 'normal', hyphens: 'none', width: '100%' }}>
             {isMobile
               ? TITLE_WORDS.map((word, i) => {
                   const isLast4 = i >= TITLE_WORDS.length - 4

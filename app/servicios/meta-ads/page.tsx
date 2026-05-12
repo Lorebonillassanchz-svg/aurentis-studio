@@ -282,7 +282,7 @@ export default function MetaAdsPage() {
       </div>
 
       {/* ── S1: HERO ─────────────────────────────────────────── */}
-      <section style={{ backgroundColor: '#0B0F1A', padding: '60px 5% 100px', position: 'relative', overflow: 'hidden' }}>
+      <section style={{ backgroundColor: '#0B0F1A', padding: '60px max(20px, 5%) 100px', position: 'relative', overflow: 'hidden' }}>
         {/* Aurora */}
         <div className="ma-aurora" style={{ position: 'absolute', inset: 0, zIndex: 0, overflow: 'hidden', pointerEvents: 'none' }}>
           <div style={{ position: 'absolute', width: 720, height: 720, top: -200, right: -100, borderRadius: '50%', background: 'radial-gradient(circle, rgba(66,133,244,0.35) 0%, transparent 70%)', filter: 'blur(60px)', animation: 'maAuroraMove1 8s ease-in-out infinite alternate' }} />
@@ -298,7 +298,7 @@ export default function MetaAdsPage() {
               <span style={labelStyle}>Meta Ads &amp; Google Ads</span>
             </Fade>
 
-            <h1 style={{ fontFamily: 'var(--font-display)', fontSize: isMobile ? '2.2rem' : 'clamp(28px, 3.8vw, 54px)', fontWeight: 800, color: '#F1F5F9', margin: '0 0 24px', lineHeight: 1.15, wordBreak: 'break-word', overflowWrap: 'break-word', width: '100%' }}>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight" style={{ fontFamily: 'var(--font-display)', fontWeight: 800, color: '#F1F5F9', margin: '0 0 24px', wordBreak: 'normal', hyphens: 'none', width: '100%' }}>
               {isMobile
                 ? TITLE_WORDS.map((word, i) => (
                     <span key={i} style={{ marginRight: '0.28em', ...(i >= SECOND_LINE_START ? { color: '#2563FF' } : {}) }}>
