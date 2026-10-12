@@ -77,9 +77,9 @@ export default function GlowUpStudioPage() {
           Antes y después
         </h2>
 
-        <div className="gu-before-after">
+        <div className="gu-before-after" style={{ alignItems: 'stretch' }}>
           {/* ANTES */}
-          <div style={{ position: 'relative', background: '#0d0d0d', minHeight: 420, display: 'flex', flexDirection: 'column', padding: '28px 24px', gap: 0 }}>
+          <div style={{ position: 'relative', background: '#0d0d0d', minHeight: 420, height: '100%', display: 'flex', flexDirection: 'column', padding: '28px 20px', gap: 0, overflow: 'hidden' }}>
 
             {/* Simulación perfil Instagram antiguo */}
             {/* Header: foto + nombre + stats */}
@@ -129,7 +129,7 @@ export default function GlowUpStudioPage() {
           </div>
 
           {/* DESPUÉS */}
-          <div style={{ position: 'relative', minHeight: 420 }}>
+          <div style={{ position: 'relative', minHeight: 420, height: '100%' }}>
             <Image
               src="/glow-up/glow-instagram.jpg"
               alt="Glow Up Studio — perfil Instagram diseñado"
