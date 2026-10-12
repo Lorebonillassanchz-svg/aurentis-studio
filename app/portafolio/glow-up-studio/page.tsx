@@ -178,9 +178,15 @@ export default function GlowUpStudioPage() {
             </div>
           </div>
 
-          {/* Banners digitales — ocupa 2 columnas */}
-          <div className="gu-mosaic-wide" style={{ position: 'relative', aspectRatio: '16/7', borderRadius: 16, overflow: 'hidden' }}>
-            <Image src="/glow-up/glow-banners.jpg" alt="Banners digitales Glow Up Studio" fill style={{ objectFit: 'cover' }} />
+          {/* Banners digitales — imagen completa sin recortar, ocupa 2 columnas */}
+          <div className="gu-mosaic-wide" style={{ borderRadius: 16, overflow: 'hidden', position: 'relative' }}>
+            <Image
+              src="/glow-up/glow-banners.jpg"
+              alt="Banners digitales Glow Up Studio"
+              width={2084}
+              height={2084}
+              style={{ width: '100%', height: 'auto', display: 'block' }}
+            />
             <div style={{ position: 'absolute', bottom: 14, left: 14, background: 'rgba(0,0,0,0.65)', backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)', color: '#C9A84C', fontSize: 11, fontFamily: 'var(--font-body)', padding: '4px 12px', borderRadius: 999 }}>
               Banners para redes sociales
             </div>
@@ -196,16 +202,32 @@ export default function GlowUpStudioPage() {
         <h2 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(22px, 2.8vw, 34px)', fontWeight: 800, color: '#F1F5F9', margin: '0 auto 16px', maxWidth: 520 }}>
           Catálogo digital interactivo
         </h2>
-        <p style={{ color: '#94A3B8', fontFamily: 'var(--font-body)', fontWeight: 300, fontSize: 15.5, lineHeight: 1.7, maxWidth: 500, margin: '0 auto 40px' }}>
+        <p style={{ color: '#94A3B8', fontFamily: 'var(--font-body)', fontWeight: 300, fontSize: 15.5, lineHeight: 1.7, maxWidth: 500, margin: '0 auto 48px' }}>
           Toda la identidad visual del estudio reunida en un catálogo de servicios en formato digital, listo para compartir y consultar desde cualquier dispositivo.
         </p>
         <a
           href="https://lorebonillassanchz-svg.github.io/glow-up-lorainebonilla/glow_up_catalog.html"
           target="_blank"
           rel="noopener noreferrer"
-          style={{ display: 'inline-block', background: 'transparent', color: '#C9A84C', fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 15, padding: '13px 32px', borderRadius: 9, textDecoration: 'none', border: '1.5px solid rgba(201,168,76,0.5)', transition: 'background 0.2s' }}
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: 10,
+            background: 'linear-gradient(135deg, #C9A84C 0%, #E8C96A 50%, #C9A84C 100%)',
+            color: '#06040A',
+            fontFamily: 'var(--font-display)',
+            fontWeight: 700,
+            fontSize: 15,
+            padding: '15px 36px',
+            borderRadius: 10,
+            textDecoration: 'none',
+            boxShadow: '0 0 32px rgba(201,168,76,0.35)',
+            letterSpacing: '0.02em',
+          }}
         >
-          Ver catálogo →
+          <span>✦</span>
+          <span>Ver catálogo completo</span>
+          <span>→</span>
         </a>
       </section>
 
