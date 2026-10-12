@@ -8,14 +8,12 @@ import WhatsAppButton from './components/WhatsAppButton'
 
 const outfit = Outfit({
   subsets: ['latin'],
-  weight: ['400', '600', '700', '800'],
   variable: '--font-display',
   display: 'swap',
 })
 
 const dmSans = DM_Sans({
   subsets: ['latin'],
-  weight: ['300', '400', '500'],
   variable: '--font-body',
   display: 'swap',
 })
