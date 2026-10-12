@@ -87,6 +87,20 @@ const projects: {
     accentBorder: 'rgba(14,165,233,0.35)',
     isReal: true,
   },
+  {
+    id: 'glow-up-studio',
+    category: 'Web',
+    sector: 'Belleza & Estética',
+    name: 'Glow Up Studio',
+    serviceType: 'Identidad de marca y catálogo digital',
+    description: 'Construcción de identidad visual desde cero para estudio de extensiones de pestañas en Granada: logo, imagen de perfil, catálogo digital interactivo y presencia en redes sociales.',
+    services: ['Branding', 'Diseño gráfico', 'Catálogo digital', 'Redes sociales'],
+    image: 'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&q=80&fit=crop',
+    accentColor: '#E05252',
+    accentBg: 'rgba(185,28,28,0.12)',
+    accentBorder: 'rgba(185,28,28,0.3)',
+    isReal: true,
+  },
 ]
 
 /* ── Page ─────────────────────────────────────────────────── */

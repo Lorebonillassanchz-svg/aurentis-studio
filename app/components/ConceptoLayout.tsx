@@ -20,12 +20,13 @@ export interface ConceptoLayoutProps {
   strategy: { num: string; title: string; text: string }[]
   services: string[]
   isReal?: boolean
+  realNote?: string
 }
 
 export default function ConceptoLayout({
   accentColor, accentRgb, heroImage, projectName, projectTagline,
   projectBrief, mockupUrl, mockupBgColor, mockupContent, stats, insights,
-  strategy, services, isReal,
+  strategy, services, isReal, realNote,
 }: ConceptoLayoutProps) {
   const [hoveredStrategy, setHoveredStrategy] = useState<number | null>(null)
 
@@ -262,7 +263,7 @@ export default function ConceptoLayout({
             fontSize: 12, color: '#4B5A72', fontStyle: 'italic',
             fontFamily: 'var(--font-body)', padding: '20px 0', margin: 0,
           }}>
-            Proyecto real — aplicación en producción y uso diario desde 2026
+            {`Proyecto real — ${realNote ?? 'aplicación en producción y uso diario desde 2026'}`}
           </p>
           <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', justifyContent: 'center', paddingBottom: 24 }}>
             {services.map(s => (
