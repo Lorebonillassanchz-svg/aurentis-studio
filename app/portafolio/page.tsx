@@ -19,6 +19,7 @@ const projects: {
   accentColor: string
   accentBg: string
   accentBorder: string
+  isReal?: boolean
 }[] = [
   {
     id: 'verdaco',
@@ -71,6 +72,20 @@ const projects: {
     accentColor: '#A855F7',
     accentBg: 'rgba(168,85,247,0.1)',
     accentBorder: 'rgba(168,85,247,0.2)',
+  },
+  {
+    id: 'horofincas',
+    category: 'Web',
+    sector: 'Administración de Fincas',
+    name: 'HoroFincas',
+    serviceType: 'Aplicación web a medida',
+    description: 'Sistema de gestión de siniestros, trabajos y seguimiento para un despacho de administración de fincas. En producción y uso diario.',
+    services: ['Desarrollo web', 'App a medida', 'En producción'],
+    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80&fit=crop',
+    accentColor: '#38BDF8',
+    accentBg: 'rgba(14,165,233,0.15)',
+    accentBorder: 'rgba(14,165,233,0.35)',
+    isReal: true,
   },
 ]
 
@@ -205,10 +220,15 @@ export default function PortafolioPage() {
               />
 
               {/* Sector pill — top */}
-              <div style={{ position: 'absolute', top: 16, left: 16, right: 16, zIndex: 2 }}>
+              <div style={{ position: 'absolute', top: 16, left: 16, right: 16, zIndex: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                 <span style={{ background: 'rgba(0,0,0,0.5)', backdropFilter: 'blur(8px)', WebkitBackdropFilter: 'blur(8px)', border: '1px solid rgba(255,255,255,0.1)', color: '#94A3B8', fontSize: 11, padding: '4px 12px', borderRadius: 999, fontFamily: 'var(--font-body)', display: 'inline-block' }}>
                   {p.sector}
                 </span>
+                {p.isReal && (
+                  <span style={{ background: 'rgba(14,165,233,0.15)', border: '1px solid rgba(14,165,233,0.35)', color: '#38BDF8', fontSize: 11, padding: '4px 12px', borderRadius: 999, fontFamily: 'var(--font-body)', display: 'inline-block' }}>
+                    Proyecto real
+                  </span>
+                )}
               </div>
 
               {/* Bottom content */}
@@ -231,7 +251,7 @@ export default function PortafolioPage() {
                     ))}
                   </div>
                   <span className="pf-see-link" style={{ color: p.accentColor }}>
-                    Ver concepto →
+                    {p.isReal ? 'Ver proyecto →' : 'Ver concepto →'}
                   </span>
                 </div>
               </div>

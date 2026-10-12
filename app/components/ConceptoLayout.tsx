@@ -19,12 +19,13 @@ export interface ConceptoLayoutProps {
   insights: { title: string; text: string }[]
   strategy: { num: string; title: string; text: string }[]
   services: string[]
+  isReal?: boolean
 }
 
 export default function ConceptoLayout({
   accentColor, accentRgb, heroImage, projectName, projectTagline,
   projectBrief, mockupUrl, mockupBgColor, mockupContent, stats, insights,
-  strategy, services,
+  strategy, services, isReal,
 }: ConceptoLayoutProps) {
   const [hoveredStrategy, setHoveredStrategy] = useState<number | null>(null)
 
@@ -252,26 +253,51 @@ export default function ConceptoLayout({
       </section>
 
       {/* ── BOTTOM BAR ───────────────────────────────────────── */}
-      <section style={{
-        padding: '24px 5%', borderTop: '1px solid rgba(255,255,255,0.05)',
-        display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-        flexWrap: 'wrap', gap: 12, background: '#0F172A',
-      }}>
-        <span style={{ fontSize: 12, color: '#4B5A72', fontStyle: 'italic', fontFamily: 'var(--font-body)' }}>
-          Proyecto conceptual — marca ficticia creada con fines ilustrativos
-        </span>
-        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-          {services.map(s => (
-            <span key={s} style={{
-              background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)',
-              color: '#64748B', fontSize: 11, padding: '3px 9px', borderRadius: 999,
-              fontFamily: 'var(--font-body)',
-            }}>
-              {s}
-            </span>
-          ))}
-        </div>
-      </section>
+      {isReal ? (
+        <section style={{
+          padding: '0 5%', borderTop: '1px solid rgba(255,255,255,0.05)',
+          background: '#0F172A', textAlign: 'center',
+        }}>
+          <p style={{
+            fontSize: 12, color: '#4B5A72', fontStyle: 'italic',
+            fontFamily: 'var(--font-body)', padding: '20px 0', margin: 0,
+          }}>
+            Proyecto real — aplicación en producción y uso diario desde 2026
+          </p>
+          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', justifyContent: 'center', paddingBottom: 24 }}>
+            {services.map(s => (
+              <span key={s} style={{
+                background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)',
+                color: '#64748B', fontSize: 11, padding: '3px 9px', borderRadius: 999,
+                fontFamily: 'var(--font-body)',
+              }}>
+                {s}
+              </span>
+            ))}
+          </div>
+        </section>
+      ) : (
+        <section style={{
+          padding: '24px 5%', borderTop: '1px solid rgba(255,255,255,0.05)',
+          display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+          flexWrap: 'wrap', gap: 12, background: '#0F172A',
+        }}>
+          <span style={{ fontSize: 12, color: '#4B5A72', fontStyle: 'italic', fontFamily: 'var(--font-body)' }}>
+            Proyecto conceptual — marca ficticia creada con fines ilustrativos
+          </span>
+          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+            {services.map(s => (
+              <span key={s} style={{
+                background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)',
+                color: '#64748B', fontSize: 11, padding: '3px 9px', borderRadius: 999,
+                fontFamily: 'var(--font-body)',
+              }}>
+                {s}
+              </span>
+            ))}
+          </div>
+        </section>
+      )}
     </>
   )
 }
