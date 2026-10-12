@@ -81,7 +81,7 @@ const projects: {
     serviceType: 'Aplicación web a medida',
     description: 'Sistema de gestión de siniestros, trabajos y seguimiento para un despacho de administración de fincas. En producción y uso diario.',
     services: ['Desarrollo web', 'App a medida', 'En producción'],
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80&fit=crop',
+    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80&fit=crop',
     accentColor: '#38BDF8',
     accentBg: 'rgba(14,165,233,0.15)',
     accentBorder: 'rgba(14,165,233,0.35)',
